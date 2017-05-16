@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
 <?php 
-	$jqueryLink = "libs/js/jquery-2.2.3.min.js";
-	$cssLink = "libs/css/style.css";
+	$jqueryLink = "js/jquery-2.2.3.min.js";
+	$cssLink = "css/style.css";
 ?>
 	<meta charset="UTF-8">
 	<title>Login</title>
@@ -14,7 +14,7 @@
 	
 	<link rel="stylesheet" type="text/css" href="<?php echo $cssLink; ?>">
 	<script src="<?php echo $jqueryLink ?>"></script>
-	<script src="libs/js/validate_login.js"></script>
+	<script src="js/validate_login.js"></script>
 	
 </head>
 <body class="login-page">
