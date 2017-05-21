@@ -1,5 +1,7 @@
-<?php require_once "header.php"; ?>
+<?php require_once "app.php"; ?>
+
+<?php PAGE::HEADER("TeamHub"); ?>
 
 	
 
-<?php require_once "footer.php"; ?>
+<?php PAGE::FOOTER(); ?>

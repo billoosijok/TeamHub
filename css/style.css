@@ -243,7 +243,7 @@ aside.main .nav-panel a:hover {
 aside.main .nav-panel h3 {
 	padding: 0 5px;
 	font-weight: normal;
-	font-size: 17px;
+	font-size: 15px;
 	color: #333;
 	margin-bottom: 10px;
 }
@@ -260,12 +260,10 @@ aside.main .nav-panel h3 .create-survey:hover {
 	color: rgba(255,255,255,0.9);
 }
 
-aside.main .nav-panel li {
-}
-
 aside.main .nav-panel li a {
 	display: block;
 	padding: 5px;
+	font-size: 16px;
 }
 
 aside.main .nav-panel li a.active {
@@ -277,6 +275,7 @@ aside.main .nav-panel li a.active {
 main.main {
 	float: right;
 	position: relative;
+	
 	animation-name: enterFromBottom;
 	animation-duration: 0.4s;
 }
@@ -345,10 +344,21 @@ main.main {
 @keyframes enterFromBottom {
 	0% {
 		opacity: 0;
-		top: 100px;
+		top: 50px;
 	}
 	100% {
 		opacity: 1;
 		top: 0px;
+	}
+}
+
+@keyframes enterFromRight {
+	0% {
+		opacity: 0;
+		right: -50px;
+	}
+	100% {
+		opacity: 1;
+		right: 0px;
 	}
 }

@@ -1,7 +1,11 @@
 <?php 
-
 /* Creates A New Survey */
-require "header.php";
+
+require "app.php";
+
+$page_title = "Create Survey";
+
+PAGE::HEADER($page_title);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 	
@@ -43,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 
 ?>	
 	<link rel="stylesheet" href="css/awesomplete.css" />
+	
 	<div class="create-survey page">
 		<header class="page-title">
 			<h1>Create A Survey</h1>
@@ -104,5 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 		</div>
 	</div>
 	<script src="js/create_survey.js"></script>
-<?php
-require_once "footer.php"; ?>
+
+
+<?php PAGE::FOOTER(); ?>

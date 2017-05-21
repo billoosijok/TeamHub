@@ -1,23 +1,13 @@
 <?php 
 
-require_once "inc/page_parts.php";
-require_once "database/connect.php";
 
-$_SESSION['user_info'] = [
-
-	'user_id' => 1,
-	'first_name' => 'Bruce',
-	'last_name' => 'Elgort',
-	'email' => 'belgort@email.com',
-
-]
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Bob | Home</title>
+	<title><?php if(isset($page_title)) { echo $page_title; } else { echo "TeamHub"; } ?></title>
 	<?php require_once "inc/css_depends.html" ?>
 </head>
 <body>
@@ -45,7 +35,7 @@ $_SESSION['user_info'] = [
 		
 		<div class="panel-content">	
 			<?php 
-				$surveys_joined = $QUERY->USER_JOINED_SURVEYS($_SESSION['user_info']['user_id']); 
+				$surveys_joined = $QUERY->SURVEYS_JOINED($_SESSION['user_info']['user_id']); 
 
 				if ($surveys_joined) {
 			?>
@@ -73,7 +63,7 @@ $_SESSION['user_info'] = [
 			
 			<?php 
 			
-			$surveys_created = $QUERY->USER_CREATED_SURVEYS($_SESSION['user_info']['user_id']);
+			$surveys_created = $QUERY->SURVEYS_CREATED($_SESSION['user_info']['user_id']);
 
 			if ($surveys_created) {
 
@@ -82,7 +72,7 @@ $_SESSION['user_info'] = [
 				<?
 				
 				foreach ($surveys_created as $survey) {
-					create_nav_item($survey->name, "#");
+					create_nav_item($survey->name, "/teamhub/survey.php?id=" . $survey->id);
 				}
 
 				?>
@@ -96,7 +86,6 @@ $_SESSION['user_info'] = [
 			?>
 		</div>
 	</section>
-
 </aside>
 
 <main class="main col-xs-12 col-sm-9">
@@ -112,7 +101,7 @@ function create_nav_item($text, $link) {
 	// If the link passed was the same as the request link
 	// then this is the current page, so we set the class 
 	// to 'active'
-	if (basename($pageUrl) == $link) {
+	if (basename($pageUrl) == basename($link)) {
 		$html_class = "active";
 	}
 

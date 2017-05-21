@@ -46,9 +46,7 @@ function InteractiveList(outlets, options) {
 
 					setTimeout(function() {
 
-						item.css({
-							'background-color': ''
-						});
+						item.css({'background-color': ''});
 
 					}, 400);
 
@@ -85,6 +83,13 @@ function InteractiveList(outlets, options) {
 	}
 
 	this.deleteItem = function(item) {
+
+		for (var i = 0; i < this.items.length; i++) {
+			if (this.items[i].attr('tag') == item.attr('tag')) {
+				this.items.splice(i, 1);
+			}
+		}
+
 		item.remove();
 
 		// Adds the filler text div if the needed (if the list is empty)
