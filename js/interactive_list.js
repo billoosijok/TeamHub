@@ -1,7 +1,9 @@
 
 
-function InteractiveList(outlets) {
-		
+function InteractiveList(outlets, options) {
+	
+	options = options || {}
+
 	// Properties
 	var _this = this; // To avoid 'this' conflicts in sub functions
 	
@@ -31,6 +33,32 @@ function InteractiveList(outlets) {
 		// Fallback
 		collectionName = collectionName || "";
 
+		if (options.duplicate === undefined || options.duplicate == false) {
+			for (var i = 0; i < this.items.length; i++) {
+				
+				var item = $(this.items[i]);
+
+				if (value === item.find('input[type="hidden"]').val()) {
+
+					item.css({
+						'background-color': '#ff7272'
+					})
+
+					setTimeout(function() {
+
+						item.css({
+							'background-color': ''
+						});
+
+					}, 400);
+
+					return false;
+				}
+			}
+		}
+
+		var item_obj = {label: label, value: value, collectionName: collectionName};
+
 		// If the div.empty exists, then we hide it.
 		if (_this.UI.list_container.find(".empty")) {
 			_this.UI.list_container.find(".empty").remove();
@@ -42,14 +70,15 @@ function InteractiveList(outlets) {
 		// Assigning a delete event to the delete button
 		list_item.find('.delete').click(this.onListItemDeleted);
 
-		// Creating a hidden input control (checkbox). For form submittion
-		var inputControl = $("<input type='checkbox' 			\
+		// Creating a hidden input control. For form submittion
+		var inputControl = $("<input type='hidden' 					\
 									name='"+collectionName+"[]' 	\
-									value='"+value+"'			\
-									aria-hidden='true'			\
-									style='display:none'			\
+									value='"+value+"'				\
+									aria-hidden='true'				\
 									>");
 		list_item.append(inputControl); // Adding it to the list item
+
+		this.items.push(list_item);
 
 		// Adding the list item to the list container.
 		this.UI.list_container.append(list_item);
