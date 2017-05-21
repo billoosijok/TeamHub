@@ -5,7 +5,6 @@ require "app.php";
 
 $page_title = "Create Survey";
 
-PAGE::HEADER($page_title);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 	
@@ -21,29 +20,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 
 	if (!$survey_name || !$people) {
 		
-		$errorDiv = "<p class='error' style='color: red'>Error</p>";
-		var_dump($_POST);
+		$errorDiv = "<p class='form-error' style='color: red'>Error</p>";
 	
 	} else {
 
-		// $DB->INSERT("surveys", [
-		// 	'name'	 		=>	$survey_name,
-		// 	'author' 		=> $user_id,
-		// 	'grading_system'=> $grading_system,
-		// 	'status' 		=> $status,
-		// ]);
+		$DB->INSERT("surveys", [
+			'name'	 		=> $survey_name,
+			'author' 		=> $user_id,
+			'grading_system'=> $grading_system,
+			'status' 		=> $status,
+		]);
 
-		// $last_survey_id = $DB->get_last_id("surveys");
+		$last_survey_id = $DB->get_last_id("surveys");
 
-		// foreach ($people as $key => $value) {
-		// 	$DB->INSERT("survey_participants", [
-		// 		'survey_id'	 =>	$last_survey_id,
-		// 		'user_id' => $user_id,
-		// 	]);
-		// }
+		foreach ($people as $key => $value) {
+			$DB->INSERT("survey_participants", [
+				'survey_id'	 =>	$last_survey_id,
+				'user_id' => $value,
+			]);
+		}
 		
 	}
 }	
+
+PAGE::HEADER($page_title);
 
 ?>	
 	<link rel="stylesheet" href="css/awesomplete.css" />
@@ -69,9 +69,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 			    		<input type="text" class="form-control text-box awesomplete" id="search-participant" placeholder="Student Name" list='mylist'>
 			    		
 			    		<datalist id="mylist">
-							<option value="matt@email.com">Matt Lehr</option>
-							<option value="chris@email.com">Chris Mcguire</option>
-							<option value="belal@email.com">Belal Sejouk</option>
+			    			<?php 
+
+			    				$users = $QUERY->USERS();
+
+			    				foreach ($users as $user) {
+			    					if ($user->id != $_SESSION['user_info']['id']) {
+			    						
+								?>
+										<option value="<?php echo $user->id; ?>"><?php echo $user->first_name . " " . $user->last_name; ?></option>
+			    				<?php	
+			    					}
+			    				}
+			    			 ?>
 						</datalist>
 
 			    	</div>

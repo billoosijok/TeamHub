@@ -1,8 +1,3 @@
-<?php 
-
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +30,7 @@
 		
 		<div class="panel-content">	
 			<?php 
-				$surveys_joined = $QUERY->SURVEYS_JOINED($_SESSION['user_info']['user_id']); 
+				$surveys_joined = $QUERY->SURVEYS_JOINED($_SESSION['user_info']['id']); 
 
 				if ($surveys_joined) {
 			?>
@@ -63,7 +58,7 @@
 			
 			<?php 
 			
-			$surveys_created = $QUERY->SURVEYS_CREATED($_SESSION['user_info']['user_id']);
+			$surveys_created = $QUERY->SURVEYS_CREATED($_SESSION['user_info']['id']);
 
 			if ($surveys_created) {
 

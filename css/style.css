@@ -54,7 +54,6 @@ a {
 
 a:hover {
 	text-decoration: none;
-	color: white;
 }
 
 .slide-down {
@@ -148,6 +147,7 @@ button, .button {
 
 button:hover, .button:hover {
   background-color: rgba(0,93,122, 0.8);
+  color: white;
 }
 
 button.secondary, .button.secondary  {
@@ -162,19 +162,19 @@ button.secondary:hover, .button.secondary:hover  {
   border-color: #2C3E50;
 }
 
-.page {
-	max-width: 1000px;
+
+.panel-default {
+	border-color: white;
+	border-bottom: 1px solid #ccc;
+	box-shadow: none;
 }
 
-.page-title {
-	margin: 20px auto 40px auto;
-	border-bottom: 1px solid rgba(0,0,0,0.3);
-	padding: 10px;
-}
-
-.page-title h1 {
-	color: #888;
-	font-weight: bold;
+.form-error {
+	border-left: 4px solid rgb(252, 100, 100);
+	width: 98%;
+	margin: 10px auto;
+	padding: 2px 10px;
+	background-color: rgba(252, 100, 100, 0.05);
 }
 
 /* ========== HEADER CSS ========== */
@@ -280,6 +280,46 @@ main.main {
 	animation-duration: 0.4s;
 }
 
+.page {
+	max-width: 1000px;
+}
+
+.page-title {
+	margin: 20px auto 10px auto;
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+	padding: 10px;
+}
+
+.page-title h1 {
+	color: #888;
+	font-weight: bold;
+}
+
+.page .content {
+	padding: 20px;
+}
+
+
+.page .content section header .tools {
+	float: right;
+}
+
+.page .content section header .tools > .option {
+	display: inline-block;
+}
+
+.page .content section header .tools > .option:after {
+	content: " | ";
+}
+
+.page .content section header .tools > .option:last-child:after {
+	content: "";
+}
+
+.page .content section header .tools > .option a {
+	padding: 0 10px;
+}
+
 /* ========== CREATE_SURVEY PAGE CSS ========== */
 
 .create-survey.page form {
@@ -324,6 +364,73 @@ main.main {
 }
 
 
+/* ========== CREATE_SURVEY PAGE CSS ========== */
+
+.view-survey.page  .panel-heading {
+	padding: 0;
+}
+
+.view-survey.page  .panel-title a {
+	display: block;
+	font-size: 20px;
+	padding: 20px;
+	background-color: white;
+
+	transition: background-color 0.2s;
+}
+
+.view-survey.page  .panel-title a:hover {
+	background-color: #fafafa;
+}
+
+.view-survey.page .content > section > header {
+	padding: 5px;
+}
+
+.view-survey.page .content > section .section-title {
+	font-size: 18px;
+	color: #888;
+	display: inline;
+}
+
+.view-survey.page .content > section > ul {
+	padding: 0;
+	list-style: none;
+}
+
+.view-survey.page .content > section .panel-group {
+	margin: 0;
+}
+
+.view-survey.page .content > section .panel-group .panel-body {
+	border: none;
+	background-color: #f9f9f9;
+}
+
+.view-survey.page .panel-body ul.other-particpants {
+	max-width: 800px;
+	margin: auto;
+	list-style: none;
+}
+.view-survey.page .panel-body ul.other-particpants li {
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+	background-color: rgba(0,0,0,0.03);
+	padding: 5px;
+}
+
+.view-survey.page .panel-body ul.other-particpants li a {
+	display: block;
+}
+
+.view-survey.page .panel-body ul.other-particpants .status {
+	float: right;
+	color: rgba(0,0,0,0.5);
+}
+
+.view-survey.page .panel-body ul.other-particpants .status.submitted {
+	color: #00a056;
+}
+
 @media (max-width: 768px) {
 	aside.main {
 		position: static;
@@ -344,7 +451,7 @@ main.main {
 @keyframes enterFromBottom {
 	0% {
 		opacity: 0;
-		top: 50px;
+		top: 20px;
 	}
 	100% {
 		opacity: 1;
@@ -355,7 +462,7 @@ main.main {
 @keyframes enterFromRight {
 	0% {
 		opacity: 0;
-		right: -50px;
+		right: -20px;
 	}
 	100% {
 		opacity: 1;

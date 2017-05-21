@@ -5,8 +5,9 @@ require_once "database/connect.php";
 
 $_SESSION['user_info'] = [
 
-	'user_id' => 1,
+	'id' => 1,
 	'first_name' => 'Bruce',
 	'last_name' => 'Elgort',
 	'email' => 'belgort@email.com',
+
 ];

@@ -65,7 +65,12 @@ class DB extends PDO {
 			$statement = $this->prepare($sql);
 
 			foreach ($params as $key => $value) {
-				$statement->bindValue(":$key", $value);	
+				
+				if (strpos($key, ":") !== 0) {
+					$key = ":$key";
+				}
+
+				$statement->bindValue("$key", $value);	
 			}
 
 			if ($debug) $statement->debugDumpParams();
