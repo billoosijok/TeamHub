@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 		$grading_system = $_POST['grading-system'];
 		$questions = $_POST['questions'];
 		$people = $_POST['people'];
-
+		
 		$DB->INSERT("surveys", [
 			'name'	 		=> $survey_name,
 			'author' 		=> $user_id,
@@ -73,7 +73,7 @@ PAGE::HEADER($page_title);
 			<h1>Create A Survey</h1>
 		</header>
 		<div class="content">
-		
+
 			<?php if(isset($errorDiv)) echo $errorDiv;?>
 			<form id="main-form" method="post">
 				
