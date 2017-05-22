@@ -12,7 +12,6 @@ PAGE::HEADER($page_title);
 			<h1><?php echo $survey->name; ?></h1>
 		</header>
 		<div class="content">
-				
 				<section>
 					<header class="setcion-header">
 						<h2 class="section-title">Survey Participants</h2>
@@ -47,7 +46,7 @@ PAGE::HEADER($page_title);
 					        </a>
 					      </h4>
 					    </div>
-					    <div id="collapse-<?php echo $i; ?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+					    <div id="collapse-<?php echo $i; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 					      <div class="panel-body">
 					        <ul class="other-particpants">
 								<?php 

@@ -139,6 +139,8 @@ class QUERY {
 		}
 
 		return $status;
-	
 	}
+
+	
+
 }

@@ -72,14 +72,16 @@ PAGE::HEADER($page_title);
 		<header class="page-title">
 			<h1>Create A Survey</h1>
 		</header>
-		
 		<div class="content">
+		
 			<?php if(isset($errorDiv)) echo $errorDiv;?>
 			<form id="main-form" method="post">
+				
 				<div class="form-group col-sm-6">
 				    <label for="survey-name">Survey Name</label>
 				    <input value="Surveey" type="text" class="form-control" id="survey-name" name="survey-name" placeholder="Name">
 				</div>
+				
 				<div class="form-group col-xs-12">
 				    <label for="search-participant">Add participants</label>
 				    <div class="grey-box col-xs-12 list-box">
