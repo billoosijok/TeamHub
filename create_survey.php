@@ -9,20 +9,28 @@ $page_title = "Create Survey";
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 	
 	$errorDiv = "";
-
-	$survey_name 	= (isset($_POST['survey-name'])) 	? $_POST['survey-name'] 	: null;
-	$people 	 	= (isset($_POST['people'])) 		? $_POST['people'] 			: null;
-	$grading_system	= $_POST['grading-system'];
 	
-	$status = "published";
+	$errors = checkFormErrors();
 
-	$user_id = '1';
-
-	if (!$survey_name || !$people) {
+	if ($errors) {
+		$errorDiv = "<ul class='form-error'>";
 		
-		$errorDiv = "<p class='form-error' style='color: red'>Error</p>";
+		foreach ($errors as $error) {
+			
+			$errorDiv .= "<li>$error</li>";
+			
+		}
+
+		$errorDiv .= "</ul>";
 	
 	} else {
+
+		$status = "published";
+		$user_id = $_SESSION['user_info']['id'];
+		$survey_name = $_POST['survey-name'];
+		$grading_system = $_POST['grading-system'];
+		$questions = $_POST['questions'];
+		$people = $_POST['people'];
 
 		$DB->INSERT("surveys", [
 			'name'	 		=> $survey_name,
@@ -39,7 +47,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 				'user_id' => $value,
 			]);
 		}
-		
+
+		foreach ($questions as $value) {
+			$DB->INSERT("questions", [
+				'text'	 =>	$value
+			]);
+
+			$last_question_id = $DB->get_last_id("questions");
+
+			$DB->INSERT("survey_questions", [
+				'question_id' =>	$last_question_id,
+				'survey_id'	  =>	$last_survey_id,
+			]);
+		}
 	}
 }	
 
@@ -54,7 +74,7 @@ PAGE::HEADER($page_title);
 		</header>
 		
 		<div class="content">
-			<?php if(isset($errorDiv)) echo $errorDiv ?>
+			<?php if(isset($errorDiv)) echo $errorDiv;?>
 			<form id="main-form" method="post">
 				<div class="form-group col-sm-6">
 				    <label for="survey-name">Survey Name</label>
@@ -75,9 +95,8 @@ PAGE::HEADER($page_title);
 
 			    				foreach ($users as $user) {
 			    					if ($user->id != $_SESSION['user_info']['id']) {
-			    						
 								?>
-										<option value="<?php echo $user->id; ?>"><?php echo $user->first_name . " " . $user->last_name; ?></option>
+									<option value="<?php echo $user->id; ?>"><?php echo $user->first_name . " " . $user->last_name; ?></option>
 			    				<?php	
 			    					}
 			    				}
@@ -86,9 +105,7 @@ PAGE::HEADER($page_title);
 
 			    	</div>
 			    	<div class="display-names list-container">
-			    		<p class='list-item chip'> Matt <a href='#' class='delete'>x</a>
-			    		<input type='hidden' name="people[]" value="matt@email.com"	aria-hidden='true'>
-			    		</p>
+			    		
 			    	</div>
 			    </div>
 				</div>
@@ -122,3 +139,46 @@ PAGE::HEADER($page_title);
 
 
 <?php PAGE::FOOTER(); ?>
+
+<?php 
+
+function checkFormErrors() {
+
+	$errors = [];
+
+	if (!isset($_POST['survey-name']) || $_POST['survey-name'] == "") {
+	
+		array_push($errors, "Please enter a survey name");
+	
+	}
+
+	if (!isset($_POST['people']) || count($_POST['people']) == 0) {
+	
+		array_push($errors, "Please add particpants to the survey");
+	
+	} else if (count($_POST['people']) < 2) {
+	
+		array_push($errors, "Please add at least 2 participants");
+	
+	}
+
+	// This is done because questions can be submitted as empty fields
+	// so we make sure that at least one of them is filled
+	$questionsFilled = 0;
+
+	foreach ($_POST['questions'] as $question) {
+		
+		if (strlen(trim($question)) > 0) {
+			$questionsFilled++;
+			break;
+		}
+	}
+
+	if (!$questionsFilled) {
+		array_push($errors, "Please enter at least 1 question");
+	}
+
+	return $errors;
+}
+
+ ?>
