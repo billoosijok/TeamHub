@@ -13,11 +13,11 @@ if ($_GET['id']) {
 
 		if ($survey->author == $_SESSION['user_info']['id']) {
 		
-			require_once "survey_admin.php";
+			$page_to_load = "_survey_admin.php";
 		
 		} else {
 		
-			require_once "survey_user.php";
+			$page_to_load = "_survey_user.php";
 		
 		}
 
@@ -29,5 +29,11 @@ if ($_GET['id']) {
 
 
 
-?>
+$page_title = $survey->name;
+
+PAGE::HEADER($page_title);
+
+require_once $page_to_load;
+
+PAGE::FOOTER();
 	

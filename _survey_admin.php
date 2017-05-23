@@ -1,12 +1,4 @@
-<?php 
-
-/* Displays Survey information to the Admin of the survey */
-
-$page_title = $survey->name;
-
-PAGE::HEADER($page_title);
-
-?>
+<?php /* Displays Survey information to the Admin of the survey */ ?>
 <div class="view-survey page">
 		<header class="page-title">
 			<h1><?php echo $survey->name; ?></h1>
