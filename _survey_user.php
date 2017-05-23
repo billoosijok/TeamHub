@@ -10,10 +10,6 @@
 						<h2 class="section-title">People To Review</h2>
 						<div class="tools">
 							<div class="option">
-								<a href="#" class="collapse-all">Collapse All</a>
-							</div>
-							<div class="option">
-								<a href="#" class="expand-all">Expand All</a>
 							</div>
 						</div>
 					</header>
@@ -50,16 +46,17 @@
 						<li class="panel-group">
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
-						      <h4 class="panel-title">
 								<?php if ($status === "Submitted") {
 							?>
-								<?php echo $participant->first_name . " " . $participant->last_name ?><span class="status"><?php echo $status; ?></span>
+								<span class="person-name disabled">
+									<?php echo $participant->first_name . " " . $participant->last_name ?><span class="status submitted"><?php echo $status; ?></span>
+								</span>
+
 							<?php } else { ?>
 						      	<?php  ?>
-						        <a role="button" data-toggle="collapse" href="#collapse-<?php echo $i; ?>" aria-expanded="true" aria-controls="collapse-<?php echo $i; ?>">
+						        <a href="#" class="person-name">
 						          <?php echo $participant->first_name . " " . $participant->last_name; ?><span class="status"><?php echo $status; ?></span>
 						        </a>
-						      </h4>
 						    </div>
 						  </div>
 						</li>	

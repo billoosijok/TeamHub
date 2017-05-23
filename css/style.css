@@ -367,11 +367,16 @@ main.main {
 
 /* ========== CREATE_SURVEY PAGE CSS ========== */
 
-.view-survey.page  .panel-heading {
+
+.view-survey.page .content > section > header {
+	padding: 5px;
+}
+
+.view-survey.page .panel-heading {
 	padding: 0;
 }
 
-.view-survey.page  .panel-title a {
+.view-survey.page .person-name {
 	display: block;
 	font-size: 20px;
 	padding: 20px;
@@ -380,12 +385,21 @@ main.main {
 	transition: background-color 0.2s;
 }
 
-.view-survey.page  .panel-title a:hover {
+.view-survey.page .person-name:not(.disabled):hover {
 	background-color: #fafafa;
 }
 
-.view-survey.page .content > section > header {
-	padding: 5px;
+.view-survey.page .person-name.disabled {
+	color: #666;
+}
+
+.view-survey.page .status {
+	float: right;
+	color: rgba(0,0,0,0.5);
+}
+
+.view-survey.page .status.submitted {
+	color: #00a056;
 }
 
 .view-survey.page .content > section .section-title {
@@ -408,29 +422,21 @@ main.main {
 	background-color: #f9f9f9;
 }
 
-.view-survey.page .panel-body ul.other-particpants {
+.view-survey.page ul.other-particpants {
 	max-width: 800px;
 	margin: auto;
 	list-style: none;
 }
-.view-survey.page .panel-body ul.other-particpants li {
+.view-survey.page ul.other-particpants li {
 	border-bottom: 1px solid rgba(0,0,0,0.3);
 	background-color: rgba(0,0,0,0.03);
 	padding: 5px;
 }
 
-.view-survey.page .panel-body ul.other-particpants li a {
+.view-survey.page ul.other-particpants li a {
 	display: block;
 }
 
-.view-survey.page .panel-body ul.other-particpants .status {
-	float: right;
-	color: rgba(0,0,0,0.5);
-}
-
-.view-survey.page .panel-body ul.other-particpants .status.submitted {
-	color: #00a056;
-}
 
 @media (max-width: 768px) {
 	aside.main {

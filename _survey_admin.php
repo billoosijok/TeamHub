@@ -33,7 +33,7 @@
 					  <div class="panel panel-default">
 					    <div class="panel-heading" role="tab" id="heading-<?php echo $i; ?>">
 					      <h4 class="panel-title">
-					        <a role="button" data-toggle="collapse" href="#collapse-<?php echo $i; ?>" aria-expanded="true" aria-controls="collapse-<?php echo $i; ?>">
+					        <a class="person-name" role="button" data-toggle="collapse" href="#collapse-<?php echo $i; ?>" aria-expanded="true" aria-controls="collapse-<?php echo $i; ?>">
 					          <?php echo $participant->first_name . " " . $participant->last_name; ?>
 					        </a>
 					      </h4>

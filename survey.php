@@ -28,7 +28,6 @@ if ($_GET['id']) {
 } else { header("Location: 404.php"); }
 
 
-
 $page_title = $survey->name;
 
 PAGE::HEADER($page_title);

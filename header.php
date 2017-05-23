@@ -37,7 +37,7 @@
 			<ul>
 				<?php
 					foreach ($surveys_joined as $survey) {
-						create_nav_item($survey->name, "#");
+						create_nav_item($survey->name, "/teamhub/survey.php?id=" . $survey->id);
 					}
 				?>
 			</ul>
