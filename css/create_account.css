@@ -1,0 +1,49 @@
+/*
+	TeamHub
+	CSS for create_account.php
+*/
+
+#content {
+	font-family : "Segoe ui", Helvetica , sans-serif;
+	background-color : #2E7F88;
+}
+
+#createAccountHeading {
+	position: relative;
+	font-style: italic;
+	font-weight: 200;
+	font-size: 2.5em;
+	color:  #2E7F88;
+	margin: 0;
+}
+
+#createAccountBlock {
+	width: 100%;
+	height: 200px;
+	background-color: #014A52;
+}
+
+#createAccountForm {
+	margin: 220px 0 0 25%;
+}
+
+.createAccountTextBox {
+	position: relative;
+	width: 50%;
+	padding: 20px;
+	margin-bottom: 15px;
+	border: none;
+	border-radius: 10px;
+}
+
+#submitAccount {
+	position: relative;
+	width: 15%;
+	height: 72px;
+	margin: 20px 0 60px 20%;
+	border: none;
+	border-radius: 10px;
+	font-size: 2em;
+	color: #fff;
+	background-color: #005D7A;
+}
