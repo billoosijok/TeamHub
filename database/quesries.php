@@ -117,6 +117,12 @@ class QUERY {
 		return $result;
 	}
 
+	/**
+	*	Queries answers to know if a questionnaire(collection of answers) is 'submitted',  
+	* 	'published' andreturns 
+	*	 
+	*	@param $survey_id (string or int) : The survey id.
+	*/
 	function QUESTIONAIRRE_STATUS($survey_id, $reviewer_id, $reviewee_id) {
 
 		$answers = $this->ANSWERS($survey_id, $reviewer_id, $reviewee_id);

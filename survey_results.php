@@ -29,7 +29,7 @@ PAGE::HEADER($survey->name." - Results"); ?>
 		</header>	
 	</div>
 	<div class="content">
-		
+		<!-- Page Content goes here -->
 	</div>
 
 <?php PAGE::FOOTER(); ?>
