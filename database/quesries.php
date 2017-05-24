@@ -101,8 +101,10 @@ class QUERY {
 	function ANSWERS($survey_id, $reviewer_id, $reviewee_id, $status = false) {
 
 		$statusClause = ($status) ? "status = '$status'" : "1";
+		$reviewerClause = ($reviewer_id == "*") ? "1" : "reviewer_id = :reviewer_id";
+		$revieweeClause = ($reviewee_id == "*") ? "1" : "reviewee_id = :reviewee_id";
 
-		$sql = "SELECT * FROM answers WHERE survey_id = :survey_id AND reviewer_id = :reviewer_id AND reviewee_id = :reviewee_id AND $statusClause";
+		$sql = "SELECT * FROM answers WHERE survey_id = :survey_id AND $reviewerClause AND  $revieweeClause AND $statusClause";
 
 		$paramsToBind = [
 			"survey_id" 	=> $survey_id,
@@ -121,7 +123,7 @@ class QUERY {
 
 		$status = "published";
 
-		if ($answers && $answers) {
+		if ($answers) {
 
 			foreach ($answers as $answer) {
 				
@@ -143,7 +145,7 @@ class QUERY {
 
 	function SURVEY_QUESTIONS($survey_id) {
 
-		$sql = "SELECT * FROM questions WHERE survey_id= :survey_id";
+		$sql = "SELECT * FROM questions WHERE survey_id = :survey_id";
 		
 		$paramsToBind = [
 			":survey_id" => $survey_id,
@@ -153,6 +155,13 @@ class QUERY {
 
 		return $questions;
 
+	}
+
+	function SURVEY_ANSWERS_FOR_USER($survey_id, $user_id, $status = false) {
+
+		$answers = $this->ANSWERS($survey_id, $reviewer_id = "*", $user_id, $status);
+
+		return $answers;
 	}
 
 }

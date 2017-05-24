@@ -9,7 +9,6 @@ $john = [
 	'first_name' => 'John',
 	'last_name' => 'Smith',
 	'email' => 'john@email.com',
-
 ];
 
 $bruce = [
@@ -17,7 +16,6 @@ $bruce = [
 	'first_name' => 'Bruce',
 	'last_name' => 'Elgort',
 	'email'	 	=> 'bruce@email.com',
-
 ];
 
 $_SESSION['user_info'] = $john;

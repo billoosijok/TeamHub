@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Login</title>
 	<link href="css/login.css" rel="stylesheet">
+	<link href="css/login.css" rel="stylesheet">
 		
 </head>
 <body class="login-page">
