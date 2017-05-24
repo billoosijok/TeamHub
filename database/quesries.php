@@ -141,6 +141,18 @@ class QUERY {
 		return $status;
 	}
 
-	
+	function SURVEY_QUESTIONS($survey_id) {
+
+		$sql = "SELECT * FROM questions WHERE survey_id= :survey_id";
+		
+		$paramsToBind = [
+			":survey_id" => $survey_id,
+		];
+
+		$questions = $this->DB->QUERY($sql, $paramsToBind)->fetchAll();
+
+		return $questions;
+
+	}
 
 }

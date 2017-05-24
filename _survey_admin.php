@@ -61,7 +61,7 @@
 													break;
 
 												default:
-													$status = "Not yet submitted";
+													$status = "Not submitted";
 													break;
 											}
 
