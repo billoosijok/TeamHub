@@ -118,10 +118,14 @@ class QUERY {
 	}
 
 	/**
-	*	Queries answers to know if a questionnaire(collection of answers) is 'submitted',  
-	* 	'published' andreturns 
+	*	Queries answers to know if a questionnaire (collection of answers) is   
+	* 	'submitted', 'published' or 'flagged'.
 	*	 
-	*	@param $survey_id (string or int) : The survey id.
+	*	@param $survey_id 	(string or int) : The survey id.
+	*	@param $reviewer_id (string or int) : The id of the person reviewing.
+	*	@param $reviewee_id (string or int) : The id of the person being reviewed.
+	*
+	*	@return The status : 'submitted', 'published', 'flagged' or null if no answer.
 	*/
 	function QUESTIONAIRRE_STATUS($survey_id, $reviewer_id, $reviewee_id) {
 
