@@ -16,13 +16,37 @@ class QUERY {
 	}
 	
 	/**
-	*	Queries all users!
+	*	Queries a user's information based on the given id!
+	*
+	*	@param $user_id (string or int) : The user id.
+	*/
+	public function USER($user_id) {
+		
+		if ($user_id == "*") {
+			// All users
+			
+			$sql = "SELECT * FROM users";
+
+			$result = $this->DB->QUERY($sql, ["user_id" => $user_id])->fetchAll();
+			
+		} else {
+			// Single User
+
+			$sql = "SELECT * FROM users WHERE id = :user_id LIMIT 1";
+
+			$result = $this->DB->QUERY($sql, ["user_id" => $user_id])->fetch();
+			
+		}
+				
+		return $result;
+	}
+
+	/**
+	*	Queries all users.
 	*/
 	public function USERS() {
-		
-		$sql = "SELECT * FROM users";
-		
-		$result = $this->DB->QUERY($sql);
+				
+		$result = $this->USER("*");
 		
 		return $result;
 	}
@@ -101,8 +125,8 @@ class QUERY {
 	function ANSWERS($survey_id, $reviewer_id, $reviewee_id, $status = false) {
 
 		$statusClause = ($status) ? "status = '$status'" : "1";
-		$reviewerClause = ($reviewer_id == "*") ? "1" : "reviewer_id = :reviewer_id";
-		$revieweeClause = ($reviewee_id == "*") ? "1" : "reviewee_id = :reviewee_id";
+		$reviewerClause = ($reviewer_id == "*") ? "TRUE" : "reviewer_id = :reviewer_id";
+		$revieweeClause = ($reviewee_id == "*") ? "TRUE" : "reviewee_id = :reviewee_id";
 
 		$sql = "SELECT * FROM answers WHERE survey_id = :survey_id AND $reviewerClause AND  $revieweeClause AND $statusClause";
 
@@ -127,7 +151,7 @@ class QUERY {
 	*
 	*	@return The status : 'submitted', 'published', 'flagged' or null if no answer.
 	*/
-	function QUESTIONAIRRE_STATUS($survey_id, $reviewer_id, $reviewee_id) {
+	function QUESTIONNAIRE_STATUS($survey_id, $reviewer_id, $reviewee_id) {
 
 		$answers = $this->ANSWERS($survey_id, $reviewer_id, $reviewee_id);
 
@@ -155,7 +179,7 @@ class QUERY {
 
 	function SURVEY_QUESTIONS($survey_id) {
 
-		$sql = "SELECT * FROM questions WHERE survey_id = :survey_id";
+		$sql = "SELECT * FROM questions INNER JOIN survey_questions ON `questions`.id = `survey_questions`.question_id WHERE survey_id = :survey_id";
 		
 		$paramsToBind = [
 			":survey_id" => $survey_id,
@@ -172,6 +196,20 @@ class QUERY {
 		$answers = $this->ANSWERS($survey_id, $reviewer_id = "*", $user_id, $status);
 
 		return $answers;
+	}
+
+	function IS_USER_IN_SURVEY($user_id, $survey_id) {
+
+		$surveys_of_user = $this->SURVEYS_JOINED($user_id);
+
+		foreach ($surveys_of_user as $survey) {
+			if ($survey->id == $survey_id) {
+				return true;
+			}
+		}
+
+		return false;
+
 	}
 
 }

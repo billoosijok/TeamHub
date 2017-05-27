@@ -3,6 +3,7 @@
 require_once "inc/page_parts.php";
 require_once "database/connect.php";
 
+$home_url = "http://localhost/teamhub";
 
 $john = [
 	'id' => 2,
@@ -18,4 +19,4 @@ $bruce = [
 	'email'	 	=> 'bruce@email.com',
 ];
 
-$_SESSION['user_info'] = $bruce;
+$_SESSION['user_info'] = $john;

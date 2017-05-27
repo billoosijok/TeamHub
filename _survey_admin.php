@@ -49,7 +49,7 @@
 										// without the same id as the current one.
 										if ($other_participant->id != $participant->id) {
 
-											$questionairre_status = $QUERY->QUESTIONAIRRE_STATUS($survey->id, $participant->id, $other_participant->id);
+											$questionairre_status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $participant->id, $other_participant->id);
 
 											switch ($questionairre_status) {
 												case 'published':

@@ -227,7 +227,7 @@ aside.main .nav-panel {
 }
 
 aside.main .nav-panel .panel-content {
-	text-align: center;
+	text-align: left;
 }
 
 /* All Links in the side panels */
@@ -264,7 +264,8 @@ aside.main .nav-panel h3 .create-survey:hover {
 aside.main .nav-panel li a {
 	display: block;
 	padding: 5px;
-	font-size: 16px;
+	padding-left: 20px;
+	font-size: 18px;
 }
 
 aside.main .nav-panel li a.active {

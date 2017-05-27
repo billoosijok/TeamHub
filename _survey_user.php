@@ -27,7 +27,7 @@
 						// without the same id as the current one.
 						if ($participant->id != $_SESSION['user_info']['id']) {
 
-							$questionairre_status = $QUERY->QUESTIONAIRRE_STATUS($survey->id, $_SESSION['user_info']['id'], $participant->id);
+							$questionairre_status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_SESSION['user_info']['id'], $participant->id);
 
 							switch ($questionairre_status) {
 								case 'published':
@@ -53,8 +53,13 @@
 								</span>
 
 							<?php } else { ?>
-						      	<?php  ?>
-						        <a href="#" class="person-name">
+						      	<?php 
+						      	$survey_id = $survey->id;
+						      	$particpant_id = $participant->id;
+
+						      	$link = "$home_url/questionnaire.php?survey_id=$survey_id&reviewee_id=$particpant_id";
+						      	 ?>
+						        <a href="<?php echo "$link" ?>" class="person-name">
 						          <?php echo $participant->first_name . " " . $participant->last_name; ?><span class="status"><?php echo $status; ?></span>
 						        </a>
 						    </div>

@@ -17,6 +17,17 @@ class PAGE {
 	public static function title($title) {
 		
 	}
+
+	public static function checkRequiredParams(...$requiredParams) {
+		
+		foreach ($requiredParams as $value) {
+	
+			if (!isset($_GET[$value])) {
+				header("Location: 404.php");
+			}
+		}
+
+	}
 	
 	public static function FOOTER() {
 		

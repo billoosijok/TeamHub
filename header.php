@@ -1,3 +1,6 @@
+<?php 
+$home_url = "http://localhost/teamhub";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +40,7 @@
 			<ul>
 				<?php
 					foreach ($surveys_joined as $survey) {
-						create_nav_item($survey->name, "/teamhub/survey.php?id=" . $survey->id);
+						create_nav_item($survey->name, "$home_url/survey.php?id=" . $survey->id);
 					}
 				?>
 			</ul>
@@ -67,7 +70,7 @@
 				<?
 				
 				foreach ($surveys_created as $survey) {
-					create_nav_item($survey->name, "/teamhub/survey.php?id=" . $survey->id);
+					create_nav_item($survey->name, "$home_url/survey.php?id=" . $survey->id);
 				}
 
 				?>
