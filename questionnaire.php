@@ -23,6 +23,10 @@ if ( 	($survey = $QUERY->SURVEY($survey_id))
 	header("Location: 404.php");
 }
 
+$reviewee = $QUERY->USER($reviewee_id);
+$questions = $QUERY->SURVEY_QUESTIONS($survey_id);
+$grading_system = $DB->get_survey_grading_system($survey_id);
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$errors = validateForm();
@@ -37,21 +41,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 		$errorDiv .= "</ul>";
 
-		foreach ($_POST['questions'] as $key => $question) {
-			$prevAnswers[$key]['grade'] = (isset($question['grade'])) ? $question['grade'] : "none";
-			$prevAnswers[$key]['answer'] = (isset($question['answer'])) ? $question['answer'] : "";
+		foreach ($_POST['answers'] as $key => $answer) {
+			$prevAnswers[$key]['grade'] = (isset($answer['grade'])) ? $answer['grade'] : "none";
+			$prevAnswers[$key]['answer'] = (isset($answer['answer'])) ? $answer['answer'] : "";
 		}
 
 	} else {
 		// submit
+		$status 	= "published";
+		$user_id 	= $_SESSION['user_info']['id'];
+		$reviewee_id = $reviewee_id;
+		$survey_id = $survey->id;
+		$answers = $_POST['answers'];
+		
+		foreach ($answers as $answer_number => $answer) {
+			$DB->INSERT("answers", [
+				'reviewer_id'	=> $user_id,
+				'reviewee_id' 	=> $reviewee_id,
+				'survey_id'		=> $survey_id,
+				'answer' 		=> $answer['text'],
+				'grade' 		=> $answer['grade'],
+				'question_id' 		=> $questions[$answer_number]->id,
+				'status' 		=> $status,
+			]);
+		}
+		
+		header("Location: $home_url/survey.php?id=$survey_id");
 	}
 }
 
 PAGE::HEADER($page_title);
 
-$reviewee = $QUERY->USER($reviewee_id);
-$questions = $QUERY->SURVEY_QUESTIONS($survey_id);
-$grading_system = $DB->get_survey_grading_system($survey_id);
 
 ?>
 
@@ -106,7 +126,7 @@ $grading_system = $DB->get_survey_grading_system($survey_id);
 									$grade_counter = 100;
 									for ($j=0; $j < count($grading_system); $j++) { 
 									?>
-							<input type="radio" name="questions[<?php echo $i; ?>][grade]" id="grade-<?php echo $question_number."-".($j+1); ?>" value="<?php echo $grade_counter; ?>" <?php if(isset($prevAnswers[$i]['grade']) && $prevAnswers[$i]['grade'] == $grade_counter) echo 'checked'; ?>><label for="grade-<?php echo $question_number."-".($j+1); ?>"><?php echo $grading_system[$j]; ?></label>
+							<input type="radio" name="answers[<?php echo $i; ?>][grade]" id="grade-<?php echo $question_number."-".($j+1); ?>" value="<?php echo $grade_counter; ?>" <?php if(isset($prevAnswers[$i]['grade']) && $prevAnswers[$i]['grade'] == $grade_counter) echo 'checked'; ?>><label for="grade-<?php echo $question_number."-".($j+1); ?>"><?php echo $grading_system[$j]; ?></label>
 										<?php
 										$grade_counter -= $grade_fraction;
 									} 
@@ -116,7 +136,7 @@ $grading_system = $DB->get_survey_grading_system($survey_id);
 							</div>
 							<div class="form-group col-xs-12 answer">
 								<label for="answer-<?php echo $question_number; ?>">Explain ... </label>
-								<textarea name="questions[<?php echo $i; ?>][answer]" id="answer-<?php echo $question_number; ?>" rows="5"><?php if(isset($prevAnswers[$i]['answer'])) echo $prevAnswers[$i]['answer']; ?></textarea>
+								<textarea name="answers[<?php echo $i; ?>][text]" id="answer-<?php echo $question_number; ?>" rows="5"><?php if(isset($prevAnswers[$i]['answer'])) echo $prevAnswers[$i]['answer']; ?></textarea>
 							</div>
 					      </div>
 					    </div>
@@ -166,29 +186,29 @@ PAGE::FOOTER();
 
 function validateForm() {
 
-	$questions = $_POST['questions'];
+	$answers = $_POST['answers'];
 
 	$errors = [];
 
-	foreach ($questions as $key => $question) {
-		$questions_number = $key + 1;
+	foreach ($answers as $key => $answer) {
+		$answer_number = $key + 1;
 
-		$grade = (isset($question['grade'])) ? $question['grade'] : null;
-		$answer = trim($question['answer']);
+		$grade = (isset($answer['grade'])) ? $answer['grade'] : null;
+		$text = trim($answer['text']);
 
-		if (!$grade && strlen($answer) < 1) {
+		if (!$grade && strlen($text) < 1) {
 			// If both of them are not provided then we continue with the next iteration
 
-			array_push($errors, "Please answer question " . $questions_number);
+			array_push($errors, "Please answer question " . $answer_number);
 			continue;
 		}
 
 		if (!$grade) {
-			array_push($errors, "Please select a grade for question ". $questions_number);
+			array_push($errors, "Please select a grade for question ". $answer_number);
 		} 
 
-		if (strlen($answer) < 1) {
-			array_push($errors, "Please provide an explanation for question ". $questions_number);
+		if (strlen($text) < 1) {
+			array_push($errors, "Please provide an explanation for answer ". $answer_number);
 		}
 	}
 
