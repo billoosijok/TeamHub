@@ -102,6 +102,24 @@ class DB extends PDO {
 		
 		}
 	}
+
+	public function get_survey_grading_system($survey_id) {
+		$survey = $this->QUERY("SELECT * FROM surveys WHERE id = $survey_id LIMIT 1")->fetch();
+
+		$grading_system_id = $survey->grading_system;
+
+		if ($grading_system_id) {
+			$sql = "SELECT * FROM grading_systems WHERE id = $grading_system_id";
+			$grading_system_row = $this->QUERY($sql)->fetch();
+
+			$grading_system = explode(",",$grading_system_row->options);
+
+		} else {
+			$grading_system = ["100", "75", "50", "25", "0"];
+		}
+
+		return $grading_system;
+	}
 	
 	private function echoForDebug($var) {
 		echo "<p class=\"debug\">";

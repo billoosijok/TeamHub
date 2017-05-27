@@ -76,7 +76,8 @@ a:hover {
 	position: relative;
 	display: inline-block;
 	border-radius: 10px;
-	border: 1px solid rgba(0,0,0,0.5);
+	border: 1px solid rgba(0,0,0,0.2);
+	background-color: white;
 }
 
 .radio-slider * {
@@ -91,31 +92,36 @@ a:hover {
   border-radius: 10px;
   margin: 0;
   cursor: pointer;
-  color: #666;
-  padding: 10px;
+  color: #888;
+  padding: 5px 15px;
   display: inline-block;
   background-color: transparent;
+  border: 3px solid transparent;
 
-  transition: 0.1s background-color;
-  transition: 0.1s transform;
+  transition: border-color 0.1s, transform 0.1s;
+}
+
+.radio-slider label:hover {
+	background-color: rgba(0, 93, 122, 0.3);
 }
 
 .radio-slider input[type=radio]:checked + label {
-  background-color: #005D7A;
+  border-color: #005D7A;
+  background-color: rgba(0, 93, 122, 1);
   color: white;
   transform: scale(1.1);
 }
 
 
 textarea {
-	padding-left: 35px; 
+	padding: 10px;
 	display: block;
 	width: 100%;
 	max-width: 100%;
 	border-radius: 10px;
 	border: none;
-	font-size: 20px;
-	font-weight: bold;
+	font-size: 18px;
+	border: 1px solid rgba(0,0,0,0.2);
 }
 textarea + label {
 	position: absolute;
@@ -301,25 +307,47 @@ main.main {
 	padding: 20px;
 }
 
+.page .content > section > header {
+	padding: 5px;
+}
+.page .content > section .section-title {
+	font-size: 18px;
+	color: #888;
+	display: inline;
+}
 
-.page .content section header .tools {
+.page .content > section header .tools {
 	float: right;
 }
 
-.page .content section header .tools > .option {
+.page .content > section header .tools > .option {
 	display: inline-block;
 }
 
-.page .content section header .tools > .option:after {
+.page .content > section header .tools > .option:after {
 	content: " | ";
 }
 
-.page .content section header .tools > .option:last-child:after {
+.page .content > section header .tools > .option:last-child:after {
 	content: "";
 }
 
-.page .content section header .tools > .option a {
+.page .content > section header .tools > .option a {
 	padding: 0 10px;
+}
+
+.page .content > section > ul {
+	padding: 0;
+	list-style: none;
+}
+
+.page .content > section .panel-group {
+	margin: 0;
+}
+
+.page .content > section .panel-group .panel-body {
+	border: none;
+	background-color: #f9f9f9;
 }
 
 /* ========== CREATE_SURVEY PAGE CSS ========== */
@@ -360,6 +388,13 @@ main.main {
 	animation-name: scaleUp;
 	animation-duration: 0.2s;
 }
+
+.create-survey.page textarea {
+	padding-left: 35px;	
+	font-size: 20px;
+	font-weight: bold; 
+}
+
 	
 .create-survey.page .submission {
 	text-align: center;
@@ -368,10 +403,6 @@ main.main {
 
 /* ========== CREATE_SURVEY PAGE CSS ========== */
 
-
-.view-survey.page .content > section > header {
-	padding: 5px;
-}
 
 .view-survey.page .panel-heading {
 	padding: 0;
@@ -403,26 +434,6 @@ main.main {
 	color: #00a056;
 }
 
-.view-survey.page .content > section .section-title {
-	font-size: 18px;
-	color: #888;
-	display: inline;
-}
-
-.view-survey.page .content > section > ul {
-	padding: 0;
-	list-style: none;
-}
-
-.view-survey.page .content > section .panel-group {
-	margin: 0;
-}
-
-.view-survey.page .content > section .panel-group .panel-body {
-	border: none;
-	background-color: #f9f9f9;
-}
-
 .view-survey.page ul.other-particpants {
 	max-width: 800px;
 	margin: auto;
@@ -437,6 +448,30 @@ main.main {
 .view-survey.page ul.other-particpants li a {
 	display: block;
 }
+
+/* ========== QUESTIONNAIRE PAGE CSS ========== */
+
+.questionnaire.page .question .panel {
+	border: none;
+	margin: 20px auto;
+}
+
+.questionnaire.page .question .panel-heading {
+	padding: 0;
+	background-color: transparent;
+}
+
+.questionnaire.page .question .question-text {
+	display: block;	
+	padding: 10px 0px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.questionnaire.page .question .grade > label {
+	display: block;
+}
+
 
 
 @media (max-width: 768px) {

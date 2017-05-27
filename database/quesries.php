@@ -212,4 +212,20 @@ class QUERY {
 
 	}
 
+	function SURVEY_GRADING_SYSTEM($survey_id) {
+
+		$survey = $this->SURVEY($survey_id);
+
+		$grading_system = $survey->grading_system;
+
+		if ($grading_system) {
+			$sql = "SELECT * FROM grading_systems WHERE id = $grading_system";
+
+			$grading_system = $this->DB->QUERY($sql);
+		}
+
+		return $grading_system;
+	}
+
+
 }
