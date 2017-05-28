@@ -89,6 +89,24 @@ class DB extends PDO {
 		
 	}
 
+	function UPDATE($table, $matching_conditions, $new_values) {
+		
+		$condition_as_sql = implode(" AND ", $matching_conditions);
+
+		$values_as_sql = [];
+
+		foreach ($new_values as $key => $value) {
+			array_push($values_as_sql, "`$key`=:$key");
+		}
+		$values_as_sql = implode(",", $values_as_sql);
+
+		echo $condition_as_sql;
+		$sql = "UPDATE `$table` SET $values_as_sql WHERE $condition_as_sql";
+
+		$this->QUERY($sql, $new_values);
+		
+	}
+
 	public function get_last_id($table, $column_name = "id") {
 		
 		$statement = $this->QUERY("SELECT MAX($column_name) as $column_name FROM $table");

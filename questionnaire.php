@@ -11,11 +11,12 @@ PAGE::checkRequiredParams('survey_id','reviewee_id');
 
 $survey_id = $_GET['survey_id'];
 $reviewee_id = $_GET['reviewee_id'];
+$reviewer_id = $_SESSION['user_info']['id'];
 
 // checking if the provided IDs are valid. If not we kick to 404;
 if ( 	($survey = $QUERY->SURVEY($survey_id)) 
 	 && ($QUERY->IS_USER_IN_SURVEY($reviewee_id, $survey_id))
-	 && ($QUERY->IS_USER_IN_SURVEY($_SESSION['user_info']['id'], $survey_id)) ) {
+	 && ($QUERY->IS_USER_IN_SURVEY($reviewer_id, $survey_id)) ) {
 	
 	$page_title = $survey->name;
 
@@ -43,31 +44,66 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		foreach ($_POST['answers'] as $key => $answer) {
 			$prevAnswers[$key]['grade'] = (isset($answer['grade'])) ? $answer['grade'] : "none";
-			$prevAnswers[$key]['answer'] = (isset($answer['answer'])) ? $answer['answer'] : "";
+			$prevAnswers[$key]['text'] = (isset($answer['text'])) ? $answer['text'] : "";
 		}
 
 	} else {
 		// submit
 		$status 	= "published";
-		$user_id 	= $_SESSION['user_info']['id'];
 		$reviewee_id = $reviewee_id;
 		$survey_id = $survey->id;
 		$answers = $_POST['answers'];
 		
-		foreach ($answers as $answer_number => $answer) {
-			$DB->INSERT("answers", [
-				'reviewer_id'	=> $user_id,
-				'reviewee_id' 	=> $reviewee_id,
-				'survey_id'		=> $survey_id,
-				'answer' 		=> $answer['text'],
-				'grade' 		=> $answer['grade'],
-				'question_id' 		=> $questions[$answer_number]->id,
-				'status' 		=> $status,
-			]);
-		}
 		
+		if ($QUERY->ANSWERS($survey_id, $reviewer_id, $reviewee_id)) {
+
+			foreach ($answers as $answer_number => $answer) {
+				$DB->UPDATE("answers", 
+					[
+					"reviewer_id = $reviewer_id",
+					"reviewee_id = $reviewee_id",	
+					"survey_id = $survey_id",	
+					"question_id = " . $questions[$answer_number]->id	
+					], [
+						'answer' 		=> $answer['text'],
+						'grade' 		=> $answer['grade'],
+						'status' 		=> $status,
+					]);
+			}
+		} else {
+			
+			foreach ($answers as $answer_number => $answer) {
+				$DB->INSERT("answers", [
+					'reviewer_id'	=> $reviewer_id,
+					'reviewee_id' 	=> $reviewee_id,
+					'survey_id'		=> $survey_id,
+					'answer' 		=> $answer['text'],
+					'grade' 		=> $answer['grade'],
+					'question_id' 	=> $questions[$answer_number]->id,
+					'status' 		=> $status,
+				]);
+			}
+			
+		}
+
 		header("Location: $home_url/survey.php?id=$survey_id");
+		
 	}
+}
+
+if ($QUERY->QUESTIONNAIRE_STATUS($survey_id, $reviewer_id, $reviewee_id) != null) {
+	
+	$answers = $QUERY->ANSWERS($survey_id, $reviewer_id, $reviewee_id);
+
+	foreach ($questions as $question_number => $question) {
+		foreach ($answers as $answer) {
+			if ($answer->question_id == $question->id) {
+				$prevAnswers[$question_number]['grade'] = $answer->grade;
+				$prevAnswers[$question_number]['text'] = $answer->answer;
+			}
+		}
+	}
+	
 }
 
 PAGE::HEADER($page_title);
@@ -136,7 +172,7 @@ PAGE::HEADER($page_title);
 							</div>
 							<div class="form-group col-xs-12 answer">
 								<label for="answer-<?php echo $question_number; ?>">Explain ... </label>
-								<textarea name="answers[<?php echo $i; ?>][text]" id="answer-<?php echo $question_number; ?>" rows="5"><?php if(isset($prevAnswers[$i]['answer'])) echo $prevAnswers[$i]['answer']; ?></textarea>
+								<textarea name="answers[<?php echo $i; ?>][text]" id="answer-<?php echo $question_number; ?>" rows="5"><?php if(isset($prevAnswers[$i]['text'])) echo $prevAnswers[$i]['text']; ?></textarea>
 							</div>
 					      </div>
 					    </div>

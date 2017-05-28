@@ -434,6 +434,10 @@ main.main {
 	color: #00a056;
 }
 
+.view-survey.page .status.flagged {
+	color: #ff0000;
+}
+
 .view-survey.page ul.other-particpants {
 	max-width: 800px;
 	margin: auto;

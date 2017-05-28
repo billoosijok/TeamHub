@@ -35,7 +35,7 @@
 									break;
 								
 								case 'flagged':
-									$status = "Waiting for answer review";
+									$status = "Flagged";
 									break;
 
 								default:
@@ -52,7 +52,7 @@
 									<?php echo $participant->first_name . " " . $participant->last_name ?><span class="status submitted"><?php echo $status; ?></span>
 								</span>
 
-							<?php } else { ?>
+							<?php } else if ($status === "Flagged") { ?>
 						      	<?php 
 						      	$survey_id = $survey->id;
 						      	$particpant_id = $participant->id;
@@ -60,12 +60,22 @@
 						      	$link = "$home_url/questionnaire.php?survey_id=$survey_id&reviewee_id=$particpant_id";
 						      	 ?>
 						        <a href="<?php echo "$link" ?>" class="person-name">
-						          <?php echo $participant->first_name . " " . $participant->last_name; ?><span class="status"><?php echo $status; ?></span>
+						          <?php echo $participant->first_name . " " . $participant->last_name; ?><span class="status flagged"><?php echo $status; ?></span>
 						        </a>
 						    </div>
 						  </div>
 						</li>	
-					<?php	}
+					<?php	} else { 
+
+								$survey_id = $survey->id;
+						      	$particpant_id = $participant->id;
+						      	
+								$link = "$home_url/questionnaire.php?survey_id=$survey_id&reviewee_id=$particpant_id";
+								?>
+								<a href="<?php echo "$link" ?>" class="person-name">
+						          <?php echo $participant->first_name . " " . $participant->last_name; ?><span class="status"><?php echo $status; ?></span>
+						        </a>
+					<?php   }
 						}
 					}
 				}

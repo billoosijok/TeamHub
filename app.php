@@ -19,4 +19,4 @@ $bruce = [
 	'email'	 	=> 'bruce@email.com',
 ];
 
-$_SESSION['user_info'] = $bruce;
+$_SESSION['user_info'] = $john;
