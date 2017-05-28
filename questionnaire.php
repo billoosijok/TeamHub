@@ -157,7 +157,7 @@ PAGE::HEADER($page_title);
 								<label>Grade</label>
 								<div class="radio-slider">
 									<?php 
-									$grade_fraction = (1 / count($grading_system)) * 100;
+									$grade_fraction = (1 / (count($grading_system) - 1)) * 100;
 
 									$grade_counter = 100;
 									for ($j=0; $j < count($grading_system); $j++) { 
@@ -239,7 +239,7 @@ function validateForm() {
 			continue;
 		}
 
-		if (!$grade) {
+		if ($grade === null) {
 			array_push($errors, "Please select a grade for question ". $answer_number);
 		} 
 
