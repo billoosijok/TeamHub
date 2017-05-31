@@ -15,10 +15,12 @@ if ($_GET['id']) {
 		
 			$page_to_load = "_survey_admin.php";
 		
-		} else {
+		} else if ($QUERY->IS_USER_IN_SURVEY($_SESSION['user_info']['id'], $survey->id)) {
 		
 			$page_to_load = "_survey_user.php";
 		
+		} else {
+			header("Location: 404.php");
 		}
 
 	} else {

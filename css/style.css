@@ -204,6 +204,7 @@ aside.main {
 	top: 0;
 	height: 100vh;
 	background-color: #2E7F88;
+	overflow-y: scroll;	
 }
 
 aside.main ul {
@@ -267,7 +268,7 @@ aside.main .nav-panel h3 .create-survey:hover {
 	color: rgba(255,255,255,0.9);
 }
 
-aside.main .nav-panel li a {
+aside.main .nav-panel li a, aside.main .nav-panel .no-surveys {
 	display: block;
 	padding: 5px;
 	padding-left: 20px;
@@ -279,6 +280,11 @@ aside.main .nav-panel li a.active {
 	color: black;
 	border-radius: 5px 0 0 5px;
 }
+
+aside.main .nav-panel .no-surveys {
+	color: rgba(0,0,0,0.4);
+}
+
 
 main.main {
 	float: right;

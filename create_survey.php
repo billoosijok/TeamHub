@@ -3,8 +3,7 @@
 
 require "app.php";
 
-$page_title = "Create Survey";
-
+$page_title = "Create a Survey";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 	
@@ -49,17 +48,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 		}
 
 		foreach ($questions as $value) {
-			$DB->INSERT("questions", [
-				'text'	 =>	$value
-			]);
+			// Only insert the question if it has a length
+			if (strlen(trim($value)) > 0) {
+				$DB->INSERT("questions", [
+					'text'	 =>	$value
+				]);			
 
-			$last_question_id = $DB->get_last_id("questions");
+				$last_question_id = $DB->get_last_id("questions");
 
-			$DB->INSERT("survey_questions", [
-				'question_id' =>	$last_question_id,
-				'survey_id'	  =>	$last_survey_id,
-			]);
+				$DB->INSERT("survey_questions", [
+					'question_id' =>	$last_question_id,
+					'survey_id'	  =>	$last_survey_id,
+				]);
+			}
 		}
+
+		header("Location: survey.php?id=$last_survey_id");
 	}
 }	
 
@@ -70,7 +74,7 @@ PAGE::HEADER($page_title);
 	
 	<div class="create-survey page">
 		<header class="page-title">
-			<h1>Create A Survey</h1>
+			<h1><?php echo $page_title ?></h1>
 		</header>
 		<div class="content">
 
@@ -79,7 +83,7 @@ PAGE::HEADER($page_title);
 				
 				<div class="form-group col-sm-6">
 				    <label for="survey-name">Survey Name</label>
-				    <input value="Surveey" type="text" class="form-control" id="survey-name" name="survey-name" placeholder="Name">
+				    <input value="<?php if (isset($_POST['survey-name'])) echo $_POST['survey-name']; ?>" type="text" class="form-control" id="survey-name" name="survey-name" placeholder="Name">
 				</div>
 				
 				<div class="form-group col-xs-12">
@@ -107,25 +111,68 @@ PAGE::HEADER($page_title);
 
 			    	</div>
 			    	<div class="display-names list-container">
-			    		
+
+			    	
 			    	</div>
+			    	<script>
+			    		// This Makes the user search box sticky
+						window.addEventListener('load', function() {
+							<?php
+				    		if (isset($_POST['people']) && sizeof($_POST['people'])) { 
+				    			$submitted_people = "";
+				    			
+				    			foreach ($_POST['people'] as $key => $value) {
+				    				$person_name = "";
+				    				foreach ($users as $user) {
+				    					if ($user->id == $value) {
+				    						$person_name = $user->first_name . " " . $user->last_name;
+				    					} else { continue; }
+				    				}
+				    				$submitted_people .= "{label: '$person_name', value: '$value'},";
+				    			}
+				    			echo "var people = [$submitted_people]";
+				    			?>
+
+								initAutoComplete(people);
+
+							<?php
+							} else { ?>
+								initAutoComplete();
+					<?php	} ?>
+						});
+			    	</script>
 			    </div>
 				</div>
 				<div class="form-group col-xs-12 grading-system">
 					<label>Grading System</label>
 					<div class="radio-slider">
-						<input type="radio" name="grading-system" id="percentage-option" value="" checked><label for="percentage-option">Percentage</label>
-						<input type="radio" name="grading-system" id="letter-option" value="1"><label for="letter-option">Letter</label>
+						<input type="radio" name="grading-system" id="percentage-option" value="" <?php if (!isset($_POST['grading-system']) || $_POST['grading-system'] == "") echo "checked" ?>><label for="percentage-option">Percentage</label>
+						<input type="radio" name="grading-system" id="letter-option" value="1" <?php if (isset($_POST['grading-system']) && $_POST['grading-system'] == "1") echo "checked" ?>><label for="letter-option">Letter</label>
 					</div>
 				</div>
 				<div class="form-group col-xs-12 questions">
 					<label>Questions</label>
 					<div class="col-xs-12 grey-box">
 						<div id="questions-container">
-							<div class="single-question row">
-								<textarea id="question-1" name="questions[]">Question</textarea>
-								<label class="question-label" for="question-1">Q1:</label>
-							</div>
+							<?php 
+							if (isset($_POST['questions'])) {
+								foreach ($_POST['questions'] as $key =>$question) {
+									$question_number = $key + 1;
+									?>
+								<div class="single-question row">
+									<textarea id="question-<?php echo $question_number ?>" name="questions[]"><?php echo $question ?></textarea>
+									<label class="question-label" for="question-<?php echo $question_number ?>">Q<?php echo $question_number; ?>:</label>
+								</div>
+									<?php
+								}
+							} else {
+							 ?>
+								<div class="single-question row">
+									<textarea id="question-1" name="questions[]"></textarea>
+									<label class="question-label" for="question-1">Q1:</label>
+								</div>
+					<?php	}
+							?>
 						</div>
 						<a class="button" id="add_question">+</a>
 					</div>

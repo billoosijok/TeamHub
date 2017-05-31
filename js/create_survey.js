@@ -1,12 +1,15 @@
+
 window.addEventListener('load', function() {
 
-	initAutoComplete();
 	initQuestionsBox();
 	initFormValidationRules();
 
 });
 
-function initAutoComplete() {
+function initAutoComplete(people) {
+
+	people = people || [];
+
 	var container = $('.list-box');
 
 	var outlets = {
@@ -19,6 +22,10 @@ function initAutoComplete() {
 	var list = new InteractiveList(outlets);
 
 	var input = $(".awesomplete");
+
+	for (var i = 0; i < people.length; i++) {
+		list.addItem(people[i].label,people[i].value, "people");
+	}
 
 	input[0].addEventListener('awesomplete-selectcomplete', function(event) {
 		/* Act on the event */

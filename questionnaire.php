@@ -172,7 +172,7 @@ PAGE::HEADER($page_title);
 							</div>
 							<div class="form-group col-xs-12 answer">
 								<label for="answer-<?php echo $question_number; ?>">Explain ... </label>
-								<textarea name="answers[<?php echo $i; ?>][text]" id="answer-<?php echo $question_number; ?>" rows="5"><?php if(isset($prevAnswers[$i]['text'])) echo $prevAnswers[$i]['text']; ?></textarea>
+								<textarea name="answers[<?php echo $i; ?>][text]" id="answer-<?php echo $question_number; ?>" class="analyze" rows="5"><?php if(isset($prevAnswers[$i]['text'])) echo $prevAnswers[$i]['text']; ?></textarea>
 							</div>
 					      </div>
 					    </div>
@@ -189,30 +189,8 @@ PAGE::HEADER($page_title);
 		
 		<?php	}	?>
 			</section>
-			
-			<script>
-		window.addEventListener('load', function() {
-			var collapse_all = $(".collapse-all");
-			var expand_all = $(".expand-all");
-
-			collapse_all.click(function() {
-				
-				var section = $(this).parentsUntil('section').parent();
-				
-				var panel = section.find('.panel-collapse.collapse.in').collapse('toggle');
-
-			});
-
-			expand_all.click(function() {
-				
-				var section = $(this).parentsUntil('section').parent();
-				
-				var panel = section.find('.panel-collapse.collapse:not(.in)').collapse('toggle');
-
-			});
-			
-		});
-	</script>
+			<script src="js/questionnaire.js"></script>
+			<script src="js/watsonAnalyzer.js"></script>
 	</div>
 </div>
 
