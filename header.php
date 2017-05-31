@@ -67,7 +67,7 @@ $home_url = "http://localhost/teamhub";
 
 			?>
 		<ul>
-				<?
+				<?php
 				
 				foreach ($surveys_created as $survey) {
 					create_nav_item($survey->name, "$home_url/survey.php?id=" . $survey->id);
