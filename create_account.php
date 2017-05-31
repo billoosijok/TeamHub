@@ -15,7 +15,6 @@ require_once 'database/db.php';
 
 if($_SERVER['REQUEST_METHOD'] = $_POST) {
 	if ($_POST['createPassword'] == $_POST['reEnterPassword']) {
-		var_dump($_POST);
 		
 		$email = $_POST['createEmail'];
 		$first_name = $_POST['createFirstName'];
@@ -29,8 +28,16 @@ if($_SERVER['REQUEST_METHOD'] = $_POST) {
 		"last_name" => $last_name,
 		"password" => $password
 		]);
+		
+		header('Location: home.php');
+		
+		/* if($DB->affected_rows == 1){
+			header('Location: home.php');    
+		} */
+		
 	}else {
-		//Error message, reload page with sticky form
+		//echo "<h2>Please fill out the form completely</h2>";
+		
 	} 
 }
 
@@ -41,12 +48,13 @@ if($_SERVER['REQUEST_METHOD'] = $_POST) {
 			<h1 id="createAccountHeading">LET'S GET YOU READY TO REVIEW YOUR PEERS</h1>
 		</div><!--create account block-->
 		<form id="createAccountForm" method="post" action="create_account.php">
-			<input type="text" class="createAccountTextBox" id="createEmail" name="createEmail" placeholder="Email" /></br>
-			<input type="text" class="createAccountTextBox" id="createFirstName" name="createFirstName" placeholder="First Name" /></br>
-			<input type="text" class="createAccountTextBox" id="createLastname" name="createLastname" placeholder="Last Name" /></br>
-			<input type="text" class="createAccountTextBox" id="createPassword" name="createPassword" placeholder="Password" /></br>
-			<input type="text" class="createAccountTextBox" id="reEnterPassword" name="reEnterPassword" placeholder="Re-Enter Password" /></br>
-			<input type="submit" id="submitAccount" name="submit" value="Sign In" />
+			<input type="text" class="createAccountTextBox" id="createEmail" name="createEmail" placeholder="Email" value="<?php if(isset($_POST['createEmail'])) echo $_POST['createEmail'];?>"/></br>
+			<input type="text" class="createAccountTextBox" id="createFirstName" name="createFirstName" placeholder="First Name" value="<?php if(isset($_POST['createFirstName'])) echo $_POST['createFirstName'];?>"/></br>
+			<input type="text" class="createAccountTextBox" id="createLastName" name="createLastName" placeholder="Last Name" value="<?php if(isset($_POST['createLastName'])) echo $_POST['createLastName'];?>"/></br>
+			<input type="password" class="createAccountTextBox" id="createPassword" name="createPassword" placeholder="Password" /></br>
+			<input type="password" class="createAccountTextBox" id="reEnterPassword" name="reEnterPassword" placeholder="Re-Enter Password" /></br>
+			<input type="submit" id="submitAccount" name="submit" value="create"/>
+			
 		</form>
 	<div><!--end content-->
 </div><!--end pagewrapper-->

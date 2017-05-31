@@ -9,6 +9,9 @@
 		
 </head>
 <body class="login-page">
+<?php
+	
+?>
 <div id="pagewrapper">
 	<div id="content">
 	
