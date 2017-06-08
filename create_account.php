@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] = $_POST) {
 		
 		$email = $_POST['createEmail'];
 		$first_name = $_POST['createFirstName'];
-		$last_name = $_POST['createLastname'];
+		$last_name = $_POST['createLastName'];
 		$password = $_POST['createPassword'];
 		$userTable = 'users';
 		
