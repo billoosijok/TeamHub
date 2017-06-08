@@ -14,9 +14,11 @@
 	require_once 'database/db.php';
 	require_once 'database/quesries.php';
 	
+	If($_SERVER['REQUEST_METHOD'] == $_POST) {
 		$email = $_POST['login_id'];
 		$password = $_POST['password'];
 
+		$loginSQL = "SELECT * FROM users WHERE email == :email AND password == :password";
 		
 		$result = $DB->QUERY($loginSQL,
 		["email" => $email,
