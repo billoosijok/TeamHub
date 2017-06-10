@@ -12,6 +12,7 @@
 
 require_once "database/connect.php";
 
+<<<<<<< Updated upstream
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($_POST['createPassword'] == $_POST['reEnterPassword']) {
 		
@@ -28,11 +29,32 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		}else{
 		
+=======
+if($_SERVER['REQUEST_METHOD'] = $_POST) {
+
+	$errorDiv = "";
+	
+	$errors = false;//checkFormErrors();
+
+	if ($errors) {
+		$errorDiv = "<ul class='form-error'>";
+		
+		foreach ($errors as $error) {
+			
+			$errorDiv .= "<li>$error</li>";
+			
+		}
+
+		$errorDiv .= "</ul>";
+	
+	} else {
+>>>>>>> Stashed changes
 		$email = $_POST['createEmail'];
 		$first_name = $_POST['createFirstName'];
 		$last_name = $_POST['createLastName'];
 		$password = $_POST['createPassword'];
 		$userTable = 'users';
+<<<<<<< Updated upstream
 		
 		$result = $DB->INSERT("users", [
 		"email" => $email,
@@ -76,13 +98,44 @@ function checkFormErrors() {
 	return $errors;
 } 
 
+=======
+				
+		$DB->INSERT("users", [
+			"email" => $email,
+			"first_name" => $first_name,
+			"last_name" => $last_name,
+			"password" => $password
+		]);
+			
+		header('Location: home.php');
+		
+	} 
+}
+		
+		
+		
+
+		
+		/* if($DB->affected_rows == 1){
+			header('Location: home.php');    
+		} */
+		
+// 	}else {
+// 		//echo "<h2>Please fill out the form completely</h2>";
+		
+// 	} 
+// }
+>>>>>>> Stashed changes
 
 ?>
 <div id="pagewrapper">
 	<div id="content">
+
 		<div id="createAccountBlock">
 			<h1 id="createAccountHeading">LET'S GET YOU READY TO REVIEW YOUR PEERS</h1>
 		</div><!--create account block-->
+		<?php if(isset($errorDiv)) echo $errorDiv;?>
+
 		<form id="createAccountForm" method="post" action="create_account.php">
 		
 			<p id="status"><?php if(isset($errorDiv)) echo $errorDiv;?></p>
@@ -99,3 +152,27 @@ function checkFormErrors() {
 </div><!--end pagewrapper-->
 </body>
 </html>
+<?php 
+
+function checkFormErrors() {
+
+	global $DB;
+	$errors = [];
+
+	if ($_POST['createPassword'] != $_POST['reEnterPassword']) {
+	
+		array_push($errors, "Passwords Don't match");
+	
+	}
+
+	$sql = "SELECT * FROM users WHERE email = :email";
+	$existed_user = $DB->QUERY($sql, [
+		'email' => $_POST['createEmail']
+	]);
+
+	if ($existed_user) {
+		array_push($errors, "Email already exists");
+	}
+
+	return $errors;
+}
