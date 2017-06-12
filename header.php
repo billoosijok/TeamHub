@@ -1,6 +1,3 @@
-<?php 
-require_once "home_url.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
