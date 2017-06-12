@@ -13,4 +13,5 @@ include "dummy_users.php";
 if (!isset($_SESSION['user_info'])) {
 	header("Location: login.php");
 }
+
 $_SESSION['user_info'] = $john;
