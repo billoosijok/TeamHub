@@ -11,7 +11,7 @@ PAGE::checkRequiredParams('survey_id','reviewee_id');
 
 $survey_id = $_GET['survey_id'];
 $reviewee_id = $_GET['reviewee_id'];
-$reviewer_id = $_SESSION['user_info']['id'];
+$reviewer_id = $_SESSION['user_info']->id;
 
 // checking if the provided IDs are valid. If not we kick to 404;
 if ( 	($survey = $QUERY->SURVEY($survey_id)) 

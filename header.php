@@ -16,7 +16,7 @@ require_once "home_url.php";
 <aside class="main col-xs-12 col-sm-3">
 		
 	<div class="profile slide-down">
-		<p class="placeholder slide-down-title person-title"><?php echo $_SESSION['user_info']['first_name'] ?></p>
+		<p class="placeholder slide-down-title person-title"><?php echo $_SESSION['user_info']->first_name ?></p>
 		<ul>
 			<li>Logout</li>
 		</ul>
@@ -37,7 +37,7 @@ require_once "home_url.php";
 		
 		<div class="panel-content">	
 			<?php 
-				$surveys_joined = $QUERY->SURVEYS_JOINED($_SESSION['user_info']['id']); 
+				$surveys_joined = $QUERY->SURVEYS_JOINED($_SESSION['user_info']->id); 
 
 				if ($surveys_joined) {
 			?>
@@ -65,7 +65,7 @@ require_once "home_url.php";
 			
 			<?php 
 			
-			$surveys_created = $QUERY->SURVEYS_CREATED($_SESSION['user_info']['id']);
+			$surveys_created = $QUERY->SURVEYS_CREATED($_SESSION['user_info']->id);
 
 			if ($surveys_created) {
 
