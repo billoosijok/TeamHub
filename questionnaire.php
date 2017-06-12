@@ -119,7 +119,7 @@ PAGE::HEADER($page_title);
 		<?php if(isset($errorDiv)) echo $errorDiv;?>
 		<section>
 			<header class="setcion-header">
-				<h2 class="section-title">Answer</h2>
+<!--				<h2 class="section-title">Answer</h2>-->
 				<div class="tools">
 					<div class="option">
 						<a href="#" class="collapse-all">Collapse All</a>

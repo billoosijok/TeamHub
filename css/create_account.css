@@ -12,19 +12,20 @@
 	position: relative;
 	font-style: italic;
 	font-weight: 200;
-	font-size: 2.5em;
+	font-size: 85px;
 	color:  #2E7F88;
 	margin: 0;
+	padding: 20px;
 }
 
 #createAccountBlock {
 	width: 100%;
-	height: 200px;
+	height: auto;
 	background-color: #014A52;
 }
 
 #createAccountForm {
-	margin: 220px 0 0 25%;
+	margin: 50px 0 0 25%;
 }
 
 .createAccountTextBox {
@@ -46,4 +47,20 @@
 	font-size: 2em;
 	color: #fff;
 	background-color: #005D7A;
+}
+
+#submitAccount:hover{
+	background-color: greenyellow;
+	color: black;
+}
+
+@media(max-width: 980px){
+	#createAccountHeading{
+		font-size: 8vw;
+	}
+	#submitAccount{
+		width: 25%;
+		font-size: 4vw;
+	}
+	}
 }

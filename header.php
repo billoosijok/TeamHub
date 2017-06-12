@@ -1,5 +1,5 @@
 <?php 
-$home_url = "http://localhost/teamhub";
+$home_url = "http://localhost:81/teamhub";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,12 +24,16 @@ $home_url = "http://localhost/teamhub";
 	<section class="nav-panel">
 		<div class="panel-content">
 			<ul>
-				<?php create_nav_item("Home", "home.php") ?>
+				<?php create_nav_item("<h4>Home</h4>", "home.php") ?>
 			</ul>
+			<ul>
+				<?php create_nav_item("Create a Survey   +","create_survey.php") ?>
+			</ul>
+			
 		</div>
 	</section>
 	<section class="nav-panel">
-		<h3 class="panel-title">Surveys Joined</h3>
+		<h3 class="panel-title">Reviewer</h3>
 		
 		<div class="panel-content">	
 			<?php 
@@ -55,7 +59,7 @@ $home_url = "http://localhost/teamhub";
 		</div>
 	</section>
 	<section class="nav-panel">
-		<h3 class="panel-title">Surveys Created <a href="create_survey.php" class="create-survey" title="Create a new survey">+</a></h3>
+		<h3 class="panel-title">Administrator</h3>
 
 		<div class="panel-content">
 			
@@ -105,3 +109,4 @@ function create_nav_item($text, $link) {
 
 	echo "<li><a href='$link' class='$html_class'>$text</a></li>\n";
 }
+?>
