@@ -58,7 +58,7 @@
 				//Assign user info to the session
 				$_SESSION['user_info'] = $row;
 				
-				// header("Location: index.php");
+				header("Location: index.php");
 				
 			}else{
 				$loginError = "<p>Name and password do not match</p>";
@@ -102,7 +102,7 @@
 				<p id="status"><?php if(isset($errorDiv)) echo $errorDiv;?></p>
 				<p id="loginError"><?php if(isset($loginError)) echo $loginError;?></p>
 				
-				<input type="text" name="login_id" id="loginIdField" value="<?php if(isset($_POST['login_id'])) echo $_POST['login_in'];?>" placeholder="Email" />
+				<input type="text" name="login_id" id="loginIdField" value="<?php if(isset($_POST['login_id'])) echo $_POST['login_id'];?>" placeholder="Email" />
 				</br>
 				<input type="password" name="password" id="passwordField" placeholder="Password" />
 				<input type="submit" id="loginButton" name="login" value="sign in" />

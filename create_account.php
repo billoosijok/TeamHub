@@ -86,8 +86,6 @@ function checkFormErrors() {
 		<?php if(isset($errorDiv)) echo $errorDiv;?>
 
 		<form id="createAccountForm" method="post" action="create_account.php">
-		
-			<p id="status"><?php if(isset($errorDiv)) echo $errorDiv;?></p>
 			
 			<input type="text" class="createAccountTextBox" id="createEmail" name="createEmail" placeholder="Email" value="<?php if(isset($_POST['createEmail'])) echo $_POST['createEmail'];?>"/></br>
 			<input type="text" class="createAccountTextBox" id="createFirstName" name="createFirstName" placeholder="First Name" value="<?php if(isset($_POST['createFirstName'])) echo $_POST['createFirstName'];?>"/></br>
