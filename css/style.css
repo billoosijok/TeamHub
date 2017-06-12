@@ -369,8 +369,8 @@ main.main {
 .homepage h3{
 	color: gray;
 }
-.margin{
-	background-color: #2E7F88;
+.dashHead{
+	background-color: rgba(46, 127, 136, .7);
 	padding: 20px 30px;
 	opacity: 5;
 	text-align: center;

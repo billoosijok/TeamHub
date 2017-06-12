@@ -2,6 +2,12 @@
 	TeamHub
 	CSS for login.php
 */
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: text-indent 0.5s 0.3s  ease; 
+	text-indent: -100%;
+	color: black;
+}
+
 .login-page{
 	margin: 0;
 }

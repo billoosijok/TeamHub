@@ -3,6 +3,12 @@
 	CSS for create_account.php
 */
 
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: text-indent 0.5s 0.3s  ease; 
+	text-indent: -100%;
+	color: black;
+}
+
 #content {
 	font-family : "Segoe ui", Helvetica , sans-serif;
 	background-color : #2E7F88;

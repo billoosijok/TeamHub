@@ -30,7 +30,7 @@
 		</div>
 	</section>
 	<section class="nav-panel">
-		<h3 class="panel-title">Reviewer</h3>
+		<h3 class="panel-title">Surveys as Reviewer</h3>
 		
 		<div class="panel-content">	
 			<?php 
@@ -56,7 +56,7 @@
 		</div>
 	</section>
 	<section class="nav-panel">
-		<h3 class="panel-title">Administrator</h3>
+		<h3 class="panel-title">Surveys as Administrator</h3>
 
 		<div class="panel-content">
 			
