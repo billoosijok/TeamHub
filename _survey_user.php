@@ -1,3 +1,4 @@
+
 <?php /* Displays Survey information to the users joined the survey */ ?>
 
 <div class="view-survey page">
@@ -25,9 +26,9 @@
 
 						// Making sure that we only show the other participants. Aka the ones 
 						// without the same id as the current one.
-						if ($participant->id != $_SESSION['user_info']['id']) {
+						if ($participant->id != $_SESSION['user_info']->id) {
 
-							$questionairre_status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_SESSION['user_info']['id'], $participant->id);
+							$questionairre_status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_SESSION['user_info']->id, $participant->id);
 
 							switch ($questionairre_status) {
 								case 'published':

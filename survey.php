@@ -11,11 +11,11 @@ if ($_GET['id']) {
 	if ($survey = $QUERY->SURVEY($survey_id)) {
 		$page_title = $survey->name;
 
-		if ($survey->author == $_SESSION['user_info']['id']) {
+		if ($survey->author == $_SESSION['user_info']->id) {
 		
 			$page_to_load = "_survey_admin.php";
 		
-		} else if ($QUERY->IS_USER_IN_SURVEY($_SESSION['user_info']['id'], $survey->id)) {
+		} else if ($QUERY->IS_USER_IN_SURVEY($_SESSION['user_info']->id, $survey->id)) {
 		
 			$page_to_load = "_survey_user.php";
 		

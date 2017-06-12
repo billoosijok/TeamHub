@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(true or isset($_SESSION['user_info'])) { 
+if(isset($_SESSION['user_info'])) { 
 	
 	header("Location: home.php");
 
@@ -10,3 +10,4 @@ if(true or isset($_SESSION['user_info'])) {
 	header("Location: login.php");
 	
 }
+

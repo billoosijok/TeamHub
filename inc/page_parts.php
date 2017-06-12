@@ -10,6 +10,7 @@ class PAGE {
 		
 		global $QUERY;
 		global $DB;
+		global $home_url;
 
 		require_once "header.php";
 	}

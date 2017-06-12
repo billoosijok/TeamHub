@@ -43,10 +43,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			
 			//Add logic to check if the query was successful
 			header('Location: home.php');
-		
 		}
-	} 
+	}
 }	
+
 function checkFormErrors() {
 
 	$errors = [];

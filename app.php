@@ -1,10 +1,18 @@
 <?php 
+if(!isset($_SESSION)) { 
+	session_start(); 
+}
 
 require_once "inc/page_parts.php";
 require_once "database/connect.php";
 
-$home_url = "http://localhost:81/teamhub";
+require_once "home_url.php";
 
 include "dummy_users.php";
 
+if (!isset($_SESSION['user_info'])) {
+	header("Location: login.php");
+}
+
+// Yay
 $_SESSION['user_info'] = $john;

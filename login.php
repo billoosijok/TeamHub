@@ -53,12 +53,12 @@
 			$statement->execute();
 			
 			//Check to see if the query was successful
-			if($row = $statement->fetch()) {
-			
+			if($row = $statement->fetchAll()) {
+				
 				//Assign user info to the session
 				$_SESSION['user_info'] = $row;
 				
-				header("Location: index.php");
+				// header("Location: index.php");
 				
 			}else{
 				$loginError = "<p>Name and password do not match</p>";
