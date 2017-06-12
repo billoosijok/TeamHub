@@ -322,6 +322,19 @@ main.main {
 	display: inline;
 }
 
+.page .content > section header {
+	background-color: white;
+	padding: 20px;
+	border-bottom: 1px solid #bbb;
+
+	transition: top 0.2s;
+}
+
+.page .content > section > ul {
+	list-style: none;
+	padding-left: 0; 
+}
+
 .page .content > section header .tools {
 	float: right;
 }
@@ -340,11 +353,6 @@ main.main {
 
 .page .content > section header .tools > .option a {
 	padding: 0 10px;
-}
-
-.page .content > section > ul {
-	padding: 0;
-	list-style: none;
 }
 
 .page .content > section .panel-group {
@@ -506,17 +514,33 @@ hr {
 
 /* ========== QUESTIONNAIRE PAGE CSS ========== */
 
-.questionnaire.page .question .panel {
+.questionnaire.page .question .comment {
+	border: 1px solid red;
+}
+
+.questionnaire.page .question textarea.flagged {
+	border: 1px solid red;
+}
+
+.questionnaire.page .question .panel, 
+.admin-review.page .question .panel{
 	border: none;
 	margin: 20px auto;
 }
 
-.questionnaire.page .question .panel-heading {
+.questionnaire.page .question .panel-heading,
+.admin-review.page .question .panel-heading {
 	padding: 0;
 	background-color: transparent;
 }
 
-.questionnaire.page .question .question-text {
+.questionnaire.page .question .panel-heading:hover,
+.admin-review.page .question .panel-heading:hover {
+	background-color: #fafafa;
+}
+
+.questionnaire.page .question .question-text,
+.admin-review.page .question .question-text {
 	display: block;	
 	padding: 10px 0px;
 	font-size: 20px;
@@ -527,7 +551,104 @@ hr {
 	display: block;
 }
 
+.admin-review.page .content > section header .tools .option .submit {
+	background-color: rgba(0,0,0,0.08);
+	padding: 10px;
+	font-weight: bold;
+	color: green;
+	position: relative;
+	opacity: 0;
+	top: 10px;
 
+	transition: opacity 0.2s, top 0.2s;
+}
+
+.admin-review.page .content > section header .tools .option .submit.reveal {
+	opacity: 1;
+	top: 0;
+}
+
+
+.admin-review.page .grade-value {
+	font-size: 20px;
+	font-weight: bold;
+	position: relative;
+}
+
+.grade-value.good {
+	color: green;
+}
+.grade-value.bad {
+	color: red;
+}
+
+.grade-value.okay {
+	color: darkorange;
+}
+
+.admin-review.page .question .panel-body {
+	position: relative;
+}
+
+.admin-review.page .question .actions {
+	/*border-top: 1px solid #ddd;*/
+	margin-top: 10px;
+	padding-top: 5px;
+}
+.admin-review.page .question .actions .action-button {
+	padding: 5px;
+	cursor: pointer;
+	border-radius: 5px;
+	width: 25px;
+	float: right;
+
+	transition: background-color 0.2s;
+}
+
+.admin-review.page .question .actions .action-button img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.admin-review.page .question .actions .action-button:hover {
+}
+
+.admin-review.page .comment-toggle-controller {
+	opacity: 0.7;	
+	
+	transition: opacity 0.1s;
+}
+
+.admin-review.page .comment-toggle-controller:hover {
+	background-color: rgba(0,0,0,0.2);
+	opacity: 1;
+}
+
+.admin-review.page .comment-box {
+	height: 0;
+	overflow: hidden;
+	opacity: 0;
+
+	transition: height 0.1s, opacity 0.2s;
+}
+
+.admin-review.page .comment-box textarea {
+	height: 100%;
+}
+
+.admin-review.page .comment-toggle:checked + label {
+	background-color: rgba(0,0,0,0.3);
+	box-shadow: inset 0px 1px 4px rgba(0,0,0,0.3);
+}
+
+.admin-review.page .comment-toggle:checked + label:hover {
+
+}
+
+.admin-review.page .comment-toggle:checked ~ .comment-box {
+	height: 70px;
+	opacity: 1;
+}
 
 @media (max-width: 768px) {
 	aside.main {

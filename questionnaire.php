@@ -45,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		foreach ($_POST['answers'] as $key => $answer) {
 			$prevAnswers[$key]['grade'] = (isset($answer['grade'])) ? $answer['grade'] : "none";
 			$prevAnswers[$key]['text'] = (isset($answer['text'])) ? $answer['text'] : "";
+			$prevAnswers[$key]['status'] = (isset($answer['status'])) ? $answer['status'] : "";
+			$prevAnswers[$key]['comment'] = (isset($answer['comment'])) ? $answer['comment'] : "";
 		}
 
 	} else {
@@ -89,22 +91,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		header("Location: $home_url/survey.php?id=$survey_id");
 		
 	}
-}
+} else {
 
-if ($QUERY->QUESTIONNAIRE_STATUS($survey_id, $reviewer_id, $reviewee_id) != null) {
+	if ($QUERY->QUESTIONNAIRE_STATUS($survey_id, $reviewer_id, $reviewee_id) != null) {
 	
-	$answers = $QUERY->ANSWERS($survey_id, $reviewer_id, $reviewee_id);
+		$answers = $QUERY->ANSWERS($survey_id, $reviewer_id, $reviewee_id);
 
-	foreach ($questions as $question_number => $question) {
-		foreach ($answers as $answer) {
-			if ($answer->question_id == $question->id) {
-				$prevAnswers[$question_number]['grade'] = $answer->grade;
-				$prevAnswers[$question_number]['text'] = $answer->answer;
+		foreach ($questions as $question_number => $question) {
+			foreach ($answers as $answer) {
+				if ($answer->question_id == $question->id) {
+					$prevAnswers[$question_number]['grade'] = $answer->grade;
+					$prevAnswers[$question_number]['text'] = $answer->answer;
+					$prevAnswers[$question_number]['status'] = $answer->status;
+					$prevAnswers[$question_number]['comment'] = $answer->comment;
+				}
 			}
 		}
 	}
-	
 }
+
+
 
 PAGE::HEADER($page_title);
 
@@ -113,7 +119,7 @@ PAGE::HEADER($page_title);
 
 <div class="questionnaire page">
 	<header class="page-title">
-		<h1><?php echo $page_title . " > " . $reviewee->first_name . " " . $reviewee->last_name; ?></h1>
+		<h1><?php echo $page_title . " &#10095; " . $reviewee->first_name . " " . $reviewee->last_name; ?></h1>
 	</header>
 	<div class="content">
 		<?php if(isset($errorDiv)) echo $errorDiv;?>
@@ -171,9 +177,22 @@ PAGE::HEADER($page_title);
 								</div>
 							</div>
 							<div class="form-group col-xs-12 answer">
-								<label for="answer-<?php echo $question_number; ?>">Explain ... </label>
-								<textarea name="answers[<?php echo $i; ?>][text]" id="answer-<?php echo $question_number; ?>" class="analyze" rows="5"><?php if(isset($prevAnswers[$i]['text'])) echo $prevAnswers[$i]['text']; ?></textarea>
+								<label for="answer-<?php echo $question_number; ?>">Explain ...</label>
+								<textarea name="answers[<?php echo $i; ?>][text]" id="answer-<?php echo $question_number; ?>" class="analyze <?php echo $prevAnswers[$i]['status'] ?>" rows="5"><?php if(isset($prevAnswers[$i]['text'])) echo $prevAnswers[$i]['text']; ?></textarea>
 							</div>
+							<?php 
+								if ($prevAnswers[$i]['comment']) {
+									?>
+								<div class="form-group col-xs-12 form-error">
+									<b>Admin Note:</b>
+									<p> 
+										<?php echo $prevAnswers[$i]['comment']; ?>
+									</p>
+								</div>
+									<?php
+								}
+							 ?>
+							
 					      </div>
 					    </div>
 					  </div>
@@ -189,7 +208,7 @@ PAGE::HEADER($page_title);
 		
 		<?php	}	?>
 			</section>
-			<script src="js/questionnaire.js"></script>
+			<script src="js/collapse-all.js"></script>
 			<script src="js/Watson-Analyzer/watsonAnalyzer.js"></script>
 	</div>
 </div>

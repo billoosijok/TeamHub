@@ -227,5 +227,14 @@ class QUERY {
 		return $grading_system;
 	}
 
+	function FLAG_ANSWER($answer_id, $comment) {
+		return $this->DB->UPDATE("answers", [
+			"id=$answer_id"
+			], [
+			'comment' => $comment,
+			'status' => 'flagged'
+			]);
+	}
+
 
 }

@@ -1,16 +1,19 @@
 
 window.addEventListener('load', function() {
-	init();
+	init_collapse_all();
 });
 
-function init() {
+function init_collapse_all() {
 	// UI
 	var collapse_all = $(".collapse-all");
 	var expand_all = $(".expand-all");
 	
+	console.log('s');
+	
 	ativateCollapsablesToggles(collapse_all, expand_all);
 
 }
+
 function ativateCollapsablesToggles(collapse_all, expand_all) {
 		
 	collapse_all.click(function() {

@@ -7,4 +7,4 @@ $home_url = "http://localhost:81/teamhub";
 
 include "dummy_users.php";
 
-$_SESSION['user_info'] = $matt;
+$_SESSION['user_info'] = $john;
