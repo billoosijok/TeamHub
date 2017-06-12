@@ -16,4 +16,3 @@ $_SESSION['user_info'] = $john;
 if (!isset($_SESSION['user_info'])) {
 	header("Location: login.php");
 }
-
