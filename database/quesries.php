@@ -77,7 +77,7 @@ class QUERY {
 		$sql = "SELECT * FROM surveys INNER JOIN survey_participants ON `surveys`.id = `survey_participants`.survey_id WHERE `survey_participants`.user_id = :user_id";
 		
 		$paramsToBind = ["user_id" => $user_id];
-
+		
 		$result = $this->DB->QUERY($sql, $paramsToBind, $this->debug)->fetchAll();
 		
 		return $result;

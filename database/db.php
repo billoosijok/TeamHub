@@ -6,7 +6,6 @@
 
 class DB extends PDO {
 
-
 	public function __construct($HOST,$USERNAME,$PASSWORD,$NAME) {
 
        	try {
@@ -14,7 +13,7 @@ class DB extends PDO {
        		parent::__construct("mysql:host=$HOST;dbname=$NAME;charset=utf8", $USERNAME, $PASSWORD);
        		$this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        		$this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-       	
+			
        	} catch (exception $e) {
        	
        		die("<h1 style='font-size: 2.5em;'>Error Establishing Database Connection <b>:/</b> </h1>");
@@ -29,7 +28,7 @@ class DB extends PDO {
 	*	@param array 	$values The values to insert into the table
 	*
     */
-    function INSERT($table, $values, $debug = false) {  
+    public function INSERT($table, $values, $debug = false) {  
 		
 
 		// Storing column names in a seperate array.
@@ -56,7 +55,7 @@ class DB extends PDO {
 		$this->QUERY($sql, $values, $debug = $debug);
 	}
 
-	function QUERY($sql, $params = [], $debug = false) {
+	public function QUERY($sql, $params = [], $debug = false) {
 		
 		$statement;
 
