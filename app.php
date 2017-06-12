@@ -3,8 +3,8 @@
 require_once "inc/page_parts.php";
 require_once "database/connect.php";
 
-$home_url = "http://localhost:81/teamhub";
+require_once "home_url.php";
 
 include "dummy_users.php";
 
-$_SESSION['user_info'] = $matt;
+$_SESSION['user_info'] = $john;

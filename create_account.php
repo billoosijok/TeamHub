@@ -12,7 +12,7 @@
 
 require_once "database/connect.php";
 
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($_POST['createPassword'] == $_POST['reEnterPassword']) {
 		
@@ -29,8 +29,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		}else{
 		
-=======
-if($_SERVER['REQUEST_METHOD'] = $_POST) {
+//=======
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$errorDiv = "";
 	
@@ -48,13 +48,13 @@ if($_SERVER['REQUEST_METHOD'] = $_POST) {
 		$errorDiv .= "</ul>";
 	
 	} else {
->>>>>>> Stashed changes
+
 		$email = $_POST['createEmail'];
 		$first_name = $_POST['createFirstName'];
 		$last_name = $_POST['createLastName'];
 		$password = $_POST['createPassword'];
 		$userTable = 'users';
-<<<<<<< Updated upstream
+
 		
 		$result = $DB->INSERT("users", [
 		"email" => $email,
@@ -98,7 +98,7 @@ function checkFormErrors() {
 	return $errors;
 } 
 
-=======
+//=======
 				
 		$DB->INSERT("users", [
 			"email" => $email,
@@ -125,7 +125,7 @@ function checkFormErrors() {
 		
 // 	} 
 // }
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 
 ?>
 <div id="pagewrapper">

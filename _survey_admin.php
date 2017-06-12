@@ -67,7 +67,7 @@
 
 											if ($status === "Submitted") {
 												?>
-												<li><a href="#"><?php echo $other_participant->first_name . " " . $other_participant->last_name ?><span class="status submitted"><?php echo $status; ?></span></a></li>
+												<li><a href="<?php echo "$home_url/admin_review.php?survey_id=".$survey->id."&reviewer_id=".$participant->id."&reviewee_id=".$other_participant->id; ?>"><?php echo $other_participant->first_name . " " . $other_participant->last_name ?><span class="status submitted"><?php echo $status; ?></span></a></li>
 												<?php
 											} else { 
 												?>

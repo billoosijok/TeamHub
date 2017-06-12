@@ -118,7 +118,7 @@ PAGE::HEADER($page_title);
 	<div class="content">
 		<?php if(isset($errorDiv)) echo $errorDiv;?>
 		<section>
-			<header class="setcion-header">
+			<header class="setcion-header fixable">
 				<h2 class="section-title">Questions</h2>
 				<div class="tools">
 					<div class="option">
