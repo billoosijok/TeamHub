@@ -14,4 +14,5 @@ if (!isset($_SESSION['user_info'])) {
 	header("Location: login.php");
 }
 
+//null
 $_SESSION['user_info'] = $john;
