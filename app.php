@@ -3,7 +3,7 @@
 require_once "inc/page_parts.php";
 require_once "database/connect.php";
 
-$home_url = "http://localhost:81/teamhub";
+$home_url = "http://localhost/teamhub";
 
 include "dummy_users.php";
 

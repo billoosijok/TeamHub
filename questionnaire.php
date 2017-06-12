@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$prevAnswers[$key]['grade'] = (isset($answer['grade'])) ? $answer['grade'] : "none";
 			$prevAnswers[$key]['text'] = (isset($answer['text'])) ? $answer['text'] : "";
 			$prevAnswers[$key]['status'] = (isset($answer['status'])) ? $answer['status'] : "";
-			$prevAnswers[$key]['comment'] = (isset($answer['comment'])) ? $answer['comment'] : "";
+			$prevAnswers[$key]['comment'] = (isset($answer['comment']) && $prevAnswers[$key]['status'] == 'flagged') ? $answer['comment'] : "";
 		}
 
 	} else {
@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$reviewee_id = $reviewee_id;
 		$survey_id = $survey->id;
 		$answers = $_POST['answers'];
-		
 		
 		if ($QUERY->ANSWERS($survey_id, $reviewer_id, $reviewee_id)) {
 
@@ -103,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					$prevAnswers[$question_number]['grade'] = $answer->grade;
 					$prevAnswers[$question_number]['text'] = $answer->answer;
 					$prevAnswers[$question_number]['status'] = $answer->status;
-					$prevAnswers[$question_number]['comment'] = $answer->comment;
+					$prevAnswers[$question_number]['comment'] = ($prevAnswers[$question_number]['status'] == 'flagged') ? $answer->comment : "";
 				}
 			}
 		}
@@ -124,8 +123,8 @@ PAGE::HEADER($page_title);
 	<div class="content">
 		<?php if(isset($errorDiv)) echo $errorDiv;?>
 		<section>
-			<header class="setcion-header">
-<!--				<h2 class="section-title">Answer</h2>-->
+			<header class="setcion-header fixable">
+				<h2 class="section-title">Questions</h2>
 				<div class="tools">
 					<div class="option">
 						<a href="#" class="collapse-all">Collapse All</a>
@@ -181,7 +180,7 @@ PAGE::HEADER($page_title);
 								<textarea name="answers[<?php echo $i; ?>][text]" id="answer-<?php echo $question_number; ?>" class="analyze <?php echo $prevAnswers[$i]['status'] ?>" rows="5"><?php if(isset($prevAnswers[$i]['text'])) echo $prevAnswers[$i]['text']; ?></textarea>
 							</div>
 							<?php 
-								if ($prevAnswers[$i]['comment']) {
+								if (isset($prevAnswers[$i]['comment']) && $prevAnswers[$i]['comment'] != "") {
 									?>
 								<div class="form-group col-xs-12 form-error">
 									<b>Admin Note:</b>
@@ -209,6 +208,7 @@ PAGE::HEADER($page_title);
 		<?php	}	?>
 			</section>
 			<script src="js/collapse-all.js"></script>
+			<script src="js/fixable.js"></script>
 			<script src="js/Watson-Analyzer/watsonAnalyzer.js"></script>
 	</div>
 </div>

@@ -1,5 +1,5 @@
 <?php 
-$home_url = "http://localhost:81/teamhub";
+$home_url = "http://localhost/teamhub";
 ?>
 <!DOCTYPE html>
 <html lang="en">
