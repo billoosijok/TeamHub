@@ -4,14 +4,22 @@ $survey;
 $questions;
 $answers;
 
-if ($_GET['id'] && $_GET['result']) {
+if ($_GET['id']) {
 	
 	$survey_id = $_GET['id'];
 
-	if ($survey = $QUERY->SURVEY($survey_id)) {
+	if ($QUERY->SURVEY($survey_id)) {
 
-		$survey = $survey;
-		$questions = $QUERY->SURVEY_QUESTIONS($survey->id);
+		$survey = $QUERY->SURVEY($survey_id);
+
+		if ($survey->status == "approved") {
+			
+			$questions = $QUERY->SURVEY_QUESTIONS($survey->id);
+			$answers = $QUERY->ANSWERS($survey_id, "*", $_USER->id);
+			
+		} else {
+			header("Location: 404.php");
+		}
 		
 
 

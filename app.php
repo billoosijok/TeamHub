@@ -11,8 +11,10 @@ require_once "home_url.php";
 
 include "dummy_users.php";
 
-$_SESSION['user_info'] = $john;
+$_SESSION['user_info'] = $bruce;
 
 if (!isset($_SESSION['user_info'])) {
 	header("Location: login.php");
 }
+
+$_USER = $_SESSION['user_info'];

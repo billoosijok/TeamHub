@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && sizeof($_POST)) {
 	} else {
 
 		$status = "published";
-		$user_id = $_SESSION['user_info']['id'];
+		$user_id = $_SESSION['user_info']->id;
 		$survey_name = $_POST['survey-name'];
 		$grading_system = $_POST['grading-system'];
 		$questions = $_POST['questions'];
@@ -100,7 +100,7 @@ PAGE::HEADER($page_title);
 			    				$users = $QUERY->USERS();
 
 			    				foreach ($users as $user) {
-			    					if ($user->id != $_SESSION['user_info']['id']) {
+			    					if ($user->id != $_SESSION['user_info']->id) {
 								?>
 									<option value="<?php echo $user->id; ?>"><?php echo $user->first_name . " " . $user->last_name; ?></option>
 			    				<?php	

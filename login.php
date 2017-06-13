@@ -53,7 +53,7 @@
 			$statement->execute();
 			
 			//Check to see if the query was successful
-			if($row = $statement->fetchAll()) {
+			if($row = $statement->fetchObject()) {
 				
 				//Assign user info to the session
 				$_SESSION['user_info'] = $row;
