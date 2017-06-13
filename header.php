@@ -15,7 +15,7 @@
 	<div class="profile slide-down">
 		<p class="placeholder slide-down-title person-title"><?php echo $_SESSION['user_info']->first_name ?></p>
 		<ul>
-			<li>Logout</li>
+			<li><a href="logout.php">Logout</a></li>
 		</ul>
 	</div>
 	<section class="nav-panel">
