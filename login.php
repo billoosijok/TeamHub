@@ -53,12 +53,8 @@
 			$statement->execute();
 			
 			//Check to see if the query was successful
-<<<<<<< HEAD
 			if($row = $statement->fetchObject()) {
-=======
-			if($row = $statement->fetch()) {
->>>>>>> origin/master
-				
+
 				//Assign user info to the session
 				$_SESSION['user_info'] = $row;
 				
