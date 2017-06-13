@@ -53,7 +53,11 @@
 			$statement->execute();
 			
 			//Check to see if the query was successful
+<<<<<<< HEAD
 			if($row = $statement->fetchObject()) {
+=======
+			if($row = $statement->fetch()) {
+>>>>>>> origin/master
 				
 				//Assign user info to the session
 				$_SESSION['user_info'] = $row;
@@ -89,15 +93,24 @@
 ?>
 
 <div id="pagewrapper">
+	
 	<div id="content">
 	
 	<div id="topSquare">
 	
+	<div id="graphicContainer">
+		
+		<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2217.81 2133.21"><defs><style>.cls-1,.cls-2{opacity:0.5;}.cls-2{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:1.72px;}</style></defs><title>graphic</title><ellipse class="cls-1" cx="455.83" cy="64.69" rx="31.52" ry="64.69"/><ellipse class="cls-1" cx="1299.36" cy="74.88" rx="31.52" ry="64.69"/><ellipse class="cls-1" cx="882.1" cy="1104.38" rx="31.52" ry="64.69"/><ellipse class="cls-1" cx="2186.29" cy="790.18" rx="31.52" ry="64.69"/><ellipse class="cls-1" cx="819.07" cy="2047.63" rx="31.52" ry="64.69"/><ellipse class="cls-1" cx="31.52" cy="2068.53" rx="31.52" ry="64.69"/><ellipse class="cls-1" cx="94.56" cy="1169.07" rx="31.52" ry="64.69"/><ellipse class="cls-1" cx="1749.78" cy="1608.93" rx="31.52" ry="64.69"/><polygon class="cls-2" points="455.83 74.89 882.1 1104.38 1299.36 74.89 455.83 74.89"/><polygon class="cls-2" points="94.56 1169.07 455.83 64.69 31.52 2068.53 819.07 2047.63 1749.78 1608.93 2186.29 790.18 1299.36 74.89 819.07 2047.63 2186.29 790.18 882.1 1104.38 1749.78 1608.93 1299.36 74.89 94.56 1169.07"/><path class="cls-2" d="M484.76,1383.33-239.75,504.76l787.55-64.69-850.59,964.15s2147.26-1300,2146.5-1285S-239.75,504.76-239.75,504.76" transform="translate(334.31 664.3)"/></svg>
+		
+	</div>
+	
+
 		<h1 id="mainTitle">TEAMHUB</h1>
 		<h2 id="subTitle">Peer To Peer Review</h2>		
 	</div><!-- end topSquare -->
 	
 		<div id="login">
+		
 			<form method="post" action="login.php">
 				<p id="status"><?php if(isset($errorDiv)) echo $errorDiv;?></p>
 				<p id="loginError"><?php if(isset($loginError)) echo $loginError;?></p>
@@ -113,6 +126,12 @@
 		</div><!-- End login -->
 	</div><!-- End content -->
 </div><!-- End pagewrapper -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>$("#subTitle").animate({
+		left: '10px'}, 'slow');
+	</script>
 </body>
 </html>
 
