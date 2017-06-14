@@ -126,7 +126,7 @@
 #graphicContainer{
 	float: right;
 	width: 25%;
-	padding: 4% 25px 0 0;
+	padding: 3% 5% 0 0;
 	animation-name: opacity;
 	animation-duration: 3s;
 }
@@ -135,7 +135,16 @@
 
 #graphic{
 	width: 100%;
-	
+}
+
+/*
+svg:hover path{
+	fill: white;
+}
+*/
+
+svg{
+	fill: white;
 }
 
 @media(max-width: 1100px){
