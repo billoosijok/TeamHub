@@ -146,7 +146,7 @@ PAGE::HEADER($page_title);
 					<div class="clear-fix"></div>
 		
 		<?php	}	?>
-				<input type="submit" class="button" value="Submit Comments">
+				<input type="submit" class="button" value="Submit Flagged Comments">
 				</form>
 			</main>
 			</section>
