@@ -137,7 +137,7 @@ class QUERY {
 		];
 
 		$result = $this->DB->QUERY($sql, $paramsToBind, $this->debug)->fetchAll();
-		
+
 		return $result;
 	}
 

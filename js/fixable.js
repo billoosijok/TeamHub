@@ -12,14 +12,15 @@ window.addEventListener('load', function() {
 function MakeFixable(el, untilScreenWidth) {
 
   untilScreenWidth = untilScreenWidth || 0;
-
-	var elPosition = elPositionInPage(el[0]);
+  
+  var elPosition = elPositionInPage(el[0]);
   var elSibling = el.next();
   var lastYPos = 0;
-
-	window.addEventListener('scroll', function() {
+	
+  window.addEventListener('scroll', function() {
 
     if(Math.max(window.innerWidth, document.documentElement.clientWidth) > untilScreenWidth) {
+      
 
       if(elPosition.y - 20 <= pageYOffset) {
 
@@ -48,7 +49,6 @@ function MakeFixable(el, untilScreenWidth) {
     if(Math.max(window.innerWidth, document.documentElement.clientWidth) < untilScreenWidth) {
       el.removeClass('fixable');
       el[0].style.position = '';
-      // console.log('works');
     } else {
 
     }
