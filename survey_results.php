@@ -1,5 +1,7 @@
 <?php require_once "app.php";
 
+
+
 $survey;
 $questions;
 $answers;
@@ -15,7 +17,9 @@ if ($_GET['id']) {
 		if ($survey->status == "approved") {
 			
 			$questions = $QUERY->SURVEY_QUESTIONS($survey->id);
-			$answers = $QUERY->ANSWERS($survey_id, "*", $_USER->id);
+			//$answers = $QUERY->ANSWERS($survey_id, $_USER->id, "*");
+			$answers = $QUERY->ANSWERS($survey_id, "*",$_USER->id);
+			
 
 		} else {
 			header("Location: 404.php");
@@ -85,6 +89,9 @@ PAGE::HEADER($survey->name." - Results"); ?>
 				?>
 				<ol>
 				<?php
+				var_dump($answers);
+				echo "<br>";
+				
 					for ($i=0; $i < count($questions); $i++) { 
 						$question = $questions[$i];
 						$question_number = $i + 1;
@@ -106,14 +113,18 @@ PAGE::HEADER($survey->name." - Results"); ?>
 					      	?>
 								<div class="col-xs-12 grade">
 						        	<?php 
-									$grade_index = grade_index($answers[$i]['grade']);
+									$grade_index = grade_index($answers[$i]->grade);
 
 						        	 ?>
 									<div class="grade-value <?php grade_class($grade_index) ?>"><?php 
 									echo $grading_system[$grade_index]; ?></div>
 								</div>
 								<div class="col-xs-12 answer">
-									<p id="answer-<?php echo $question_number; ?>"><?php echo $answers[$i]['text']; ?></p>
+									<?php for($j=0 ; $j < count($answers); $j++) { 
+										if($questions[$i]->id == $answers[$j]->question_id){ ?>
+											<p id="answer-<?php echo $question_number; ?>"><?php echo $answers[$j]->answer; ?></p>
+									<?php }	
+									} ?>
 								</div>
 					      	<?php
 					      	} else {
