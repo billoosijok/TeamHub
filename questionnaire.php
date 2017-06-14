@@ -189,7 +189,7 @@ PAGE::HEADER($page_title);
 		
 		<?php	}	?>
 			</section>
-			<script src="js/questionnaire.js"></script>
+			<script src="js/collapse-all.js"></script>
 			<script src="js/Watson-Analyzer/watsonAnalyzer.js"></script>
 	</div>
 </div>
