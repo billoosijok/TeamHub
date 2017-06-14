@@ -16,16 +16,17 @@
 							$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
 							
 							foreach($surveys_joined as $survey) {
-								$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
-								
-								if($status == "flagged") {
-									echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
+								if ($survey->status != "approved") {
+									$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
+									
+									if($status == "flagged") {
+										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
+									}
 								}
 							}
 						?>
 					</div>
 				</div>
-				
 				<div class="col-s-1 col-md-3">
 				<div class="dashHead">View Results</div>
 					<div class="homeFeedVR">
@@ -33,15 +34,12 @@
 								$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
 
 								foreach($surveys_joined as $survey) {
-									$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
 
-									if($status == "approved") {
+									if($survey->status == "approved") {
 										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
 									}
 								}
 							?>
-						
-						
 					</div>
 				</div>
 				

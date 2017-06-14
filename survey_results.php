@@ -61,7 +61,7 @@ function grade_class($grade_index) {
 
 PAGE::HEADER($survey->name." - Results"); ?>
 
-	<div class="survey-resutl page">
+	<div class="questionnaire page">
 		<header class="page-title">
 			<h1><?php echo $survey->name . " > " . "Result"; ?></h1>
 		</header>	
