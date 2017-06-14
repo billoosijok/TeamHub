@@ -157,7 +157,7 @@ button:hover, .button:hover {
 }
 
 button[disabled] {
-	background-color: rgba(0,93,122, 0.6);
+	opacity: 0.6;
 }
 
 button.secondary, .button.secondary  {
@@ -664,26 +664,19 @@ hr {
 	opacity: 1;
 }
 
-#approveButton{
-	color: gray;
+.button#results,
+#approveButton {
 	background-color: greenyellow;
+	color: black;
+}
+.closed-warning {
+	color: red;
 }
 
-#results{
-	background-color: greenyellow;
-	padding: 5px;
-	text-align: center;
-	transition: .5s ease-in-out;
-	opacity: .8;
-}
-
-#results:hover{
-/*	padding: 5px 0;*/
+/*#results:hover{
 	font-size: 1.5em;
-/*	color: black;*/
 	opacity: 1;
-	
-}
+}*/
 
 @media (max-width: 768px) {
 	aside.main {

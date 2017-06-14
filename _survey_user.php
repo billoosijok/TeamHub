@@ -8,12 +8,7 @@
 				<?php 
 				if ($survey->status == "approved") {
 					?>
-
-<<<<<<< HEAD
-				<a href='<?php echo "$home_url/survey_results.php?survey_id=".$survey->id; ?>'><div id="results">Results</div></a>
-=======
-				<a class="button" href='<?php echo "$home_url/survey_results.php?survey_id=".$survey->id; ?>'>Results</a>
->>>>>>> origin/master
+				<a class="button" href='<?php echo "$home_url/survey_results.php?survey_id=".$survey->id; ?>' id="results">Results</a>
 				<?php
 				} 
 				?>
@@ -24,7 +19,12 @@
 				<section>
 					<?php if ($survey->status == "approved") {
 						?>
-						<h4><b>This survey is closed</b></h4>
+						<div class="row">
+							<div class="col-xs-12">
+								<h4 class="closed-warning"><b>This survey is closed. <a href="<?php echo "$home_url/survey_results.php?survey_id=".$survey->id; ?>">View Results</a></b></h4>
+							</div>
+						</div>
+						
 						<?php
 					} ?>
 				</section>

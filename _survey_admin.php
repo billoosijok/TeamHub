@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				if ($survey->status == "approved") {
 					?>
 
-				<button disabled>Approved</button>
+				<button id="approveButton" disabled>Approved</button>
 				<?php
 				} else {
 					?>
@@ -44,6 +44,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			<div class="clear-fix"></div>
 		</header>
 		<div class="content">
+				<section>
+					<?php if ($survey->status == "approved") {
+						?>
+						<div class="row">
+							<div class="col-xs-12">
+								<h4 class="closed-warning"><b>This survey is closed.</b></h4>
+							</div>
+						</div>
+						
+						<?php
+					} ?>
+				</section>
 				<section>
 					<header class="setcion-header">
 						<h2 class="section-title">Survey Participants</h2>
