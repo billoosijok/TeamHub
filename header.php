@@ -1,3 +1,9 @@
+<?php 
+
+$pageUrl = $_SERVER['REQUEST_URI'];
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +27,12 @@
 	<section class="nav-panel">
 		<div class="panel-content">
 			<ul>
-				<?php create_nav_item("<h4>Home</h4>", "home.php") ?>
+				<?php 
+				$active = strpos(basename($pageUrl), "home.php") !== false;
+				create_nav_item("Home", "home.php", $active) ?>
 			</ul>
 			<ul>
-				<?php create_nav_item("Create a Survey   +","create_survey.php") ?>
+				<?php create_nav_item("Create a Survey  +","create_survey.php") ?>
 			</ul>
 			
 		</div>
@@ -41,7 +49,13 @@
 			<ul>
 				<?php
 					foreach ($surveys_joined as $survey) {
-						create_nav_item($survey->name, "$home_url/survey.php?id=" . $survey->id);
+						$active = false;
+						if ((isset($_GET['survey_id']) && $_GET['survey_id'] == $survey->id) 
+							|| strpos(basename($pageUrl), "survey.php?id=" . $survey->id) !== false) {
+							$active = true;
+						}
+
+						create_nav_item($survey->name, "$home_url/survey.php?id=" . $survey->id, $active);
 					}
 				?>
 			</ul>
@@ -71,7 +85,13 @@
 				<?php
 				
 				foreach ($surveys_created as $survey) {
-					create_nav_item($survey->name, "$home_url/survey.php?id=" . $survey->id);
+					$active = false;
+						
+					if ((isset($_GET['survey_id']) && $_GET['survey_id'] == $survey->id) 
+						|| strpos(basename($pageUrl), "survey.php?id=" . $survey->id) !== false) {
+						$active = true;
+					}
+					create_nav_item($survey->name, "$home_url/survey.php?id=" . $survey->id, $active);
 				}
 
 				?>
@@ -91,16 +111,15 @@
 
 <?php 
 
-function create_nav_item($text, $link) {
+function create_nav_item($text, $link, $active = false) {
 	
 	$html_class = "";
-	
-	$pageUrl = $_SERVER['REQUEST_URI'];
 
 	// If the link passed was the same as the request link
 	// then this is the current page, so we set the class 
 	// to 'active'
-	if (basename($pageUrl) == basename($link)) {
+
+	if ($active) {
 		$html_class = "active";
 	}
 
