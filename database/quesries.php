@@ -123,21 +123,31 @@ class QUERY {
 	*	@param $reviewee_id	(string or int) : The id of the user being reviewed.
 	*/
 	function ANSWERS($survey_id, $reviewer_id, $reviewee_id, $status = false) {
-
-		$statusClause = ($status) ? "status = '$status'" : "1";
-		$reviewerClause = ($reviewer_id == "*") ? "TRUE" : "reviewer_id = :reviewer_id";
-		$revieweeClause = ($reviewee_id == "*") ? "TRUE" : "reviewee_id = :reviewee_id";
-
-		$sql = "SELECT * FROM answers WHERE survey_id = :survey_id AND $reviewerClause AND  $revieweeClause AND $statusClause";
-
+		
 		$paramsToBind = [
 			"survey_id" 	=> $survey_id,
-			"reviewer_id" 	=> $reviewer_id,
-			"reviewee_id"	=> $reviewee_id
 		];
+		
+		$statusClause = ($status) ? "status = '$status'" : "TRUE";
+		
+		if ($reviewer_id == "*") {
+			$reviewerClause = "TRUE";
+		} else {
+			$reviewerClause = "reviewer_id = :reviewer_id";
+			$paramsToBind['reviewer_id'] = $reviewer_id;
+		}
+		
+		if ($reviewee_id == "*") {
+			$revieweeClause = "TRUE";
+		} else {
+			$revieweeClause = "reviewee_id = :reviewee_id";
+			$paramsToBind['reviewee_id'] = $reviewee_id;
+		}
 
+		$sql = "SELECT * FROM answers WHERE survey_id = :survey_id AND $reviewerClause AND  $revieweeClause AND $statusClause";		
+		
 		$result = $this->DB->QUERY($sql, $paramsToBind, $this->debug)->fetchAll();
-
+		
 		return $result;
 	}
 

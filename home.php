@@ -13,13 +13,16 @@
 				<div class="dashHead">Start Here</div>
 					<div class="homeFeedSH">
 						<?php
-//							$surveys_joined = SURVEYS_JOINED()
+							$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
+							
+							foreach($surveys_joined as $survey) {
+								$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
+								
+								if($status == "flagged") {
+									echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a>";
+								}
+							}
 						?>
-						<p>SURVEY NAME -> REVIEWEE</p><hr/>
-						<p>SURVEY NAME -> REVIEWEE</p><hr/>
-						<p>SURVEY NAME -> REVIEWEE</p><hr/>
-						<p>SURVEY NAME -> REVIEWEE</p><hr/>
-						<p>SURVEY NAME -> REVIEWEE</p><hr/>
 					</div>
 				</div>
 				
