@@ -89,8 +89,6 @@ PAGE::HEADER($survey->name." - Results"); ?>
 				?>
 				<ol>
 				<?php
-				var_dump($answers);
-				echo "<br>";
 				
 					for ($i=0; $i < count($questions); $i++) { 
 						$question = $questions[$i];
@@ -112,16 +110,14 @@ PAGE::HEADER($survey->name." - Results"); ?>
 					      	<?php if (isset($answers[$i])) {
 					      	?>
 								<div class="col-xs-12 grade">
-						        	<?php 
-									$grade_index = grade_index($answers[$i]->grade);
-
-						        	 ?>
-									<div class="grade-value <?php grade_class($grade_index) ?>"><?php 
-									echo $grading_system[$grade_index]; ?></div>
+						        	
 								</div>
 								<div class="col-xs-12 answer">
 									<?php for($j=0 ; $j < count($answers); $j++) { 
 										if($questions[$i]->id == $answers[$j]->question_id){ ?>
+											<?php $grade_index = grade_index($answers[$j]->grade); ?>
+											<div class="grade-value <?php grade_class($grade_index) ?>"><?php 
+											echo $grading_system[$grade_index]; ?></div>
 											<p id="answer-<?php echo $question_number; ?>"><?php echo $answers[$j]->answer; ?></p>
 									<?php }	
 									} ?>
