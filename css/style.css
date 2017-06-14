@@ -582,6 +582,9 @@ hr {
 	top: 0;
 }
 
+.admin-review.page .content > section header .tools .option .submit:hover{
+	opacity: .7;
+}
 
 .admin-review.page .grade-value {
 	font-size: 20px;
@@ -664,15 +667,28 @@ hr {
 	opacity: 1;
 }
 
-.button#results,
+.button#results{
+	display: none;
+}
 #approveButton {
 	background-color: greenyellow;
-	color: black;
+	color: gray;
 }
+
+
 .closed-warning {
 	color: red;
 }
 
+.button#results:hover,
+#approveButton:hover{
+	opacity: .6;
+}
+
+#approveButton:disabled{
+	background-color: #2E7F88;
+	color: white;
+}
 /*#results:hover{
 	font-size: 1.5em;
 	opacity: 1;
