@@ -3,7 +3,7 @@
 	CSS for login.php
 */
 [placeholder]:focus::-webkit-input-placeholder {
-  transition: text-indent 0.5s 0.3s  ease; 
+  transition: text-indent 0.5s 0.2s  ease; 
 	text-indent: -100%;
 	color: black;
 }
@@ -20,6 +20,15 @@
   }
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    left: -1000px;
+  }
+  to {
+    left: 10px;
   }
 }
 
@@ -59,7 +68,8 @@
 	letter-spacing: 1px;
 	padding: 0 0 0 20px;
 	margin-top: -100px;
-	left: -1000px;
+	animation-name: enterFromLeft;
+	animation-duration: 0.7s;
 }
 
 #loginIdField {
@@ -115,6 +125,10 @@
 
 #createAccountLink:hover{
 	color: greenyellow; 
+}
+
+#create{
+	margin: 0;
 }
 
 #graphicContainer{

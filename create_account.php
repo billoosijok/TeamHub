@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php 
+if(!isset($_SESSION)) { 
+	session_start(); 
+}
+
+?>
+
 <html lang="en">
 <head>
 
@@ -40,6 +47,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			"last_name" => $last_name,
 			"password" => $password
 			]);
+			
+			$sql = "SELECT * FROM users WHERE email= :email";
+			$result = $DB->QUERY($sql, [
+				"email" => $email
+			]);
+			
+			if($user = $result->fetch()) {
+				$_SESSION['user_info'] = $user;
+//				var_dump($_SESSION['user_info']);
+			}
 			
 			//Add logic to check if the query was successful
 			header('Location: home.php');

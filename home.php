@@ -11,7 +11,16 @@
 			<div class="row">
 				<div class="col-s-1 col-md-3">
 				<div class="dashHead">Start Here</div>
-					<div class="homeFeedSH"><p>SURVEY NAME -> REVIEWEE</p><hr/><p>SURVEY NAME -> REVIEWEE</p><hr/><p>SURVEY NAME -> REVIEWEE</p><hr/><p>SURVEY NAME -> REVIEWEE</p><hr/><p>SURVEY NAME -> REVIEWEE</p><hr/></div>
+					<div class="homeFeedSH">
+						<?php
+//							$surveys_joined = SURVEYS_JOINED()
+						?>
+						<p>SURVEY NAME -> REVIEWEE</p><hr/>
+						<p>SURVEY NAME -> REVIEWEE</p><hr/>
+						<p>SURVEY NAME -> REVIEWEE</p><hr/>
+						<p>SURVEY NAME -> REVIEWEE</p><hr/>
+						<p>SURVEY NAME -> REVIEWEE</p><hr/>
+					</div>
 				</div>
 				
 				<div class="col-s-1 col-md-3">

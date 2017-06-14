@@ -115,7 +115,10 @@
 				</br>
 				<input type="password" name="password" id="passwordField" placeholder="Password" />
 				<input type="submit" id="loginButton" name="login" value="sign in" />
+				
+				<div id="create">
 				<a href="create_account.php" id="createAccountLink">CREATE ACCOUNT</a>
+			</div>
 			</form>
 			
 			
