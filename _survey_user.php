@@ -3,7 +3,18 @@
 
 <div class="view-survey page">
 		<header class="page-title">
-			<h1><?php echo $survey->name; ?></h1>
+			<h1 class="col-xs-10"><?php echo $survey->name; ?></h1>
+			<div class="col-xs-2">
+				<?php 
+				if ($survey->status == "approved") {
+					?>
+
+				<a href='<?php echo "$home_url/survey_results.php?survey_id=".$survey->id; ?>'>Results</a>
+				<?php
+				} 
+				?>
+			</div>
+			<div class="clear-fix"></div>
 		</header>
 		<div class="content">
 				<section>

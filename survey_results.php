@@ -6,9 +6,9 @@ $survey;
 $questions;
 $answers;
 
-if ($_GET['id']) {
+if ($_GET['survey_id']) {
 	
-	$survey_id = $_GET['id'];
+	$survey_id = $_GET['survey_id'];
 
 	if ($QUERY->SURVEY($survey_id)) {
 
