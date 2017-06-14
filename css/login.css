@@ -3,7 +3,7 @@
 	CSS for login.php
 */
 [placeholder]:focus::-webkit-input-placeholder {
-  transition: text-indent 0.5s 0.2s  ease; 
+  transition: text-indent 0.5s 0.2s  ease;
 	text-indent: -100%;
 	color: black;
 }
@@ -36,7 +36,7 @@
 #topSquare {
 	height: 60%;
 	width: 100%;
-	background-color : #034D55; 
+	background-color : #034D55;
 }
 
 #mainTitle {
@@ -67,7 +67,6 @@
 #loginIdField {
 	position: relative;
 	margin: 100px 0 0 25%;
-	height: 15px;
 	width: 50%;
 	padding: 20px;
 	border: none;
@@ -78,13 +77,12 @@
 #passwordField {
 	position: relative;
 	margin: 50px 0 0 25%;
-	height: 15px;
 	width: 50%;
 	padding: 20px;
 	border: none;
 	border-radius: 10px;
 	font-size: 1.5em;
-	
+
 }
 
 #loginButton {
@@ -116,7 +114,7 @@
 }
 
 #createAccountLink:hover{
-	color: greenyellow; 
+	color: greenyellow;
 }
 
 #create{
@@ -148,7 +146,7 @@ svg{
 }
 
 @media(max-width: 1100px){
-	
+
 	#mainTitle{
 /*		display: block;*/
 /*		height: 100%;*/
@@ -172,4 +170,3 @@ svg{
 		font-size: 3vw;
 	}
 }
-
