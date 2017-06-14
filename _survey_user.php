@@ -9,7 +9,11 @@
 				if ($survey->status == "approved") {
 					?>
 
+<<<<<<< HEAD
 				<a href='<?php echo "$home_url/survey_results.php?survey_id=".$survey->id; ?>'><div id="results">Results</div></a>
+=======
+				<a class="button" href='<?php echo "$home_url/survey_results.php?survey_id=".$survey->id; ?>'>Results</a>
+>>>>>>> origin/master
 				<?php
 				} 
 				?>
@@ -17,6 +21,13 @@
 			<div class="clear-fix"></div>
 		</header>
 		<div class="content">
+				<section>
+					<?php if ($survey->status == "approved") {
+						?>
+						<h4><b>This survey is closed</b></h4>
+						<?php
+					} ?>
+				</section>
 				<section>
 					<header class="setcion-header">
 						<h2 class="section-title">People To Review</h2>
@@ -58,7 +69,13 @@
 						<li class="panel-group">
 						  <div class="panel panel-default">
 						    <div class="panel-heading">
-								<?php if ($status === "Submitted") {
+								<?php if($survey->status == "approved") {
+									?>
+								<span class="person-name disabled">
+									<?php echo $participant->first_name . " " . $participant->last_name ?><span class="status"><?php echo $status; ?></span>
+								</span>
+									<?php
+								} elseif ($status === "Submitted") {
 							?>
 								<span class="person-name disabled">
 									<?php echo $participant->first_name . " " . $participant->last_name ?><span class="status submitted"><?php echo $status; ?></span>
