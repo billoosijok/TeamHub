@@ -156,6 +156,10 @@ button:hover, .button:hover {
   color: white;
 }
 
+button[disabled] {
+	background-color: rgba(0,93,122, 0.6);
+}
+
 button.secondary, .button.secondary  {
   background-color: #fff;
   color: #4586BF;
@@ -466,9 +470,16 @@ hr {
 /* ========== CREATE_SURVEY PAGE CSS ========== */
 
 
+.view-survey.page .button {
+	margin: 0;
+	color: white;
+}
+
+
 .view-survey.page .panel-heading {
 	padding: 0;
 }
+
 
 .view-survey.page .person-name {
 	display: block;

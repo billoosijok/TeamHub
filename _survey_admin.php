@@ -1,7 +1,47 @@
-<?php /* Displays Survey information to the Admin of the survey */ ?>
+<?php /* Displays Survey information to the Admin of the survey */ 
+
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	if (isset($_POST['approve'])) {
+		$DB->UPDATE("surveys", [
+				
+				// Conditions
+				'id='.$_GET['id']
+			
+			], [
+
+				// New values
+				"status" => 'approved'
+
+			]);
+
+		$survey = $QUERY->SURVEY($survey_id);
+	}
+}
+
+?>
 <div class="view-survey page">
 		<header class="page-title">
-			<h1><?php echo $survey->name; ?></h1>
+			<h1 class="col-xs-10"><?php echo $survey->name; ?></h1>
+			<div class="col-xs-2">
+				<?php 
+				if ($survey->status == "approved") {
+					?>
+
+				<button disabled>Approved</button>
+				<?php
+				} else {
+					?>
+				<form action="" method="post">
+					<input name="approve" class="button" title="Send Results to Participants" type="submit" value="Approve">
+				</form>
+	
+				<?php
+				}
+				?>
+
+			</div>
+			<div class="clear-fix"></div>
 		</header>
 		<div class="content">
 				<section>
@@ -65,7 +105,7 @@
 													break;
 											}
 
-											if ($status === "Submitted") {
+											if ($status === "Submitted" && $survey->status != "approved") {
 												?>
 												<li><a href="<?php echo "$home_url/admin_review.php?survey_id=".$survey->id."&reviewer_id=".$participant->id."&reviewee_id=".$other_participant->id; ?>"><?php echo $other_participant->first_name . " " . $other_participant->last_name ?><span class="status submitted"><?php echo $status; ?></span></a></li>
 												<?php

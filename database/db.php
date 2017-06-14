@@ -99,7 +99,6 @@ class DB extends PDO {
 		}
 		$values_as_sql = implode(",", $values_as_sql);
 
-		echo $condition_as_sql;
 		$sql = "UPDATE `$table` SET $values_as_sql WHERE $condition_as_sql";
 
 		$this->QUERY($sql, $new_values);
