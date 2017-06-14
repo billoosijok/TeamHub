@@ -8,27 +8,19 @@
 	color: black;
 }
 
-.path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash 5s linear alternate infinite;
-}
-
-@keyframes dash {
-  from {
-    stroke-dashoffset: 1000;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
 @keyframes enterFromLeft {
   from {
     left: -1000px;
+	  opacity: 0;
   }
   to {
     left: 10px;
+  }
+}
+
+@keyframes opacity {
+  from {
+	  opacity: 0;
   }
 }
 
@@ -69,7 +61,7 @@
 	padding: 0 0 0 20px;
 	margin-top: -100px;
 	animation-name: enterFromLeft;
-	animation-duration: 0.7s;
+	animation-duration: 1s;
 }
 
 #loginIdField {
@@ -134,11 +126,16 @@
 #graphicContainer{
 	float: right;
 	width: 25%;
-	padding: 4% 25px 0 0;	
+	padding: 4% 25px 0 0;
+	animation-name: opacity;
+	animation-duration: 3s;
 }
+
+
 
 #graphic{
 	width: 100%;
+	
 }
 
 @media(max-width: 1100px){

@@ -133,7 +133,7 @@ PAGE::HEADER($page_title);
 								<p id="answer-<?php echo $question_number; ?>"><?php echo $questions_answers[$i]['text']; ?></p>
 							</div>
 							<div class="col-xs-12 actions">
-								<input type="checkbox" id="comment-toggle-<?php echo $i; ?>" class="comment-toggle" style="display: none;"><label title="Add flag to answer" class="comment-toggle-controller action-button" for="comment-toggle-<?php echo $i; ?>"><img src="assets/flag.svg" alt="flag icon"></label>
+								<input type="checkbox" id="comment-toggle-<?php echo $i; ?>" class="comment-toggle" style="display: none;"><label title="Add flag and return answer" class="comment-toggle-controller action-button" for="comment-toggle-<?php echo $i; ?>"><img src="assets/flag.svg" alt="flag icon"></label>
 								<textarea placeholder="Your comment" name="comments[]" id="comment-<?php  echo $i; ?>" cols="30" rows="3" class="comment-box"></textarea>
 							</div>
 					      </div>

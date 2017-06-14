@@ -19,7 +19,7 @@
 								$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
 								
 								if($status == "flagged") {
-									echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a>";
+									echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
 								}
 							}
 						?>
@@ -28,17 +28,61 @@
 				
 				<div class="col-s-1 col-md-3">
 				<div class="dashHead">View Results</div>
-					<div class="homeFeedVR"><p>SURVEY NAME</p><hr/></div>
+					<div class="homeFeedVR">
+						<?php
+								$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
+
+								foreach($surveys_joined as $survey) {
+									$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
+
+									if($status == "approved") {
+										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
+									}
+								}
+							?>
+						
+						
+					</div>
 				</div>
 				
 				<div class="col-s-1 col-md-3">
 				<div class="dashHead">Surveys to Review</div>
-					<div class="homeFeed"><p>SURVEY NAME -> REVIEWEE</p><hr/></div>
+					<div class="homeFeed">
+						<?php
+									$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
+
+									foreach($surveys_joined as $survey) {
+										$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
+
+										if($status == "") {
+											echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
+										}
+									}
+								?>
+					
+					</div>
 				</div>	
 				
 				<div class="col-s-1 col-md-3">
 				<div class="dashHead">Surveys to Approve</div>
-				<div class="homeFeed"><p>SURVEY NAME</p><hr/></div>
+				<div class="homeFeed">
+				
+					<?php
+									$surveys_created = $QUERY->SURVEYS_CREATED($_USER->id);
+
+									foreach($surveys_created as $survey) {
+										$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
+
+										if($status == "submitted") {
+											echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."<hr/></a>";
+										}
+									}
+								?>
+					
+				
+				
+				
+				</div>
 				</div>
 				
 				
