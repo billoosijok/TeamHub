@@ -9,7 +9,7 @@
 				if ($survey->status == "approved") {
 					?>
 
-				<a href='<?php echo "$home_url/survey_results.php?survey_id=".$survey->id; ?>'>Results</a>
+				<a href='<?php echo "$home_url/survey_results.php?survey_id=".$survey->id; ?>'><div id="results">Results</div></a>
 				<?php
 				} 
 				?>

@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				} else {
 					?>
 				<form action="" method="post">
-					<input name="approve" class="button" title="Send Results to Participants" type="submit" value="Approve">
+					<input id="approveButton" name="approve" class="button" title="Send Results to Participants" type="submit" value="Approve">
 				</form>
 	
 				<?php
