@@ -81,7 +81,7 @@ PAGE::HEADER($page_title);
 
 <div class="admin-review page">
 	<header class="page-title">
-		<h1><?php echo $page_title . " &#10095; " . $reviewee->first_name . " " . $reviewee->last_name . " reviewing " . $reviewer->first_name . " " . $reviewer->last_name; ?></h1>
+		<h1><?php echo $page_title . " &#10095; " . $reviewer->first_name . " " . $reviewer->last_name . " reviewing " . $reviewee->first_name . " " . $reviewee->last_name; ?></h1>
 	</header>
 	<div class="content">
 		<section>
