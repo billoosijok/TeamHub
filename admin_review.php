@@ -24,6 +24,7 @@ if ( 	($survey = $QUERY->SURVEY($survey_id))
 }
 
 $reviewee = $QUERY->USER($reviewee_id);
+$reviewer = $QUERY->USER($reviewer_id);
 $questions = $QUERY->SURVEY_QUESTIONS($survey_id);
 $answers = $QUERY->ANSWERS($survey_id, $reviewer_id, $reviewee_id);
 
@@ -80,7 +81,7 @@ PAGE::HEADER($page_title);
 
 <div class="admin-review page">
 	<header class="page-title">
-		<h1><?php echo $page_title . " &#10095; " . $reviewee->first_name . " " . $reviewee->last_name; ?></h1>
+		<h1><?php echo $page_title . " &#10095; " . $reviewee->first_name . " " . $reviewee->last_name . " reviewing " . $reviewer->first_name . " " . $reviewer->last_name; ?></h1>
 	</header>
 	<div class="content">
 		<section>
