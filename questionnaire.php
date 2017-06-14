@@ -176,10 +176,10 @@ PAGE::HEADER($page_title);
 							</div>
 							<div class="form-group col-xs-12 answer">
 								<label for="answer-<?php echo $question_number; ?>">Explain ... </label>
-								<textarea name="answers[<?php echo $i; ?>][text]" id="answer-<?php echo $question_number; ?>" class="analyze  <?php echo $prevAnswers[$i]['status'] ?>" rows="5"><?php if(isset($prevAnswers[$i]['text'])) echo $prevAnswers[$i]['text']; ?></textarea>
+								<textarea name="answers[<?php echo $i; ?>][text]" id="answer-<?php echo $question_number; ?>" class="analyze  <?php if(isset($prevAnswers[$i])) echo $prevAnswers[$i]['status'] ?>" rows="5"><?php if(isset($prevAnswers[$i]['text'])) echo $prevAnswers[$i]['text']; ?></textarea>
 							</div>
 							<?php 
-								if ($prevAnswers[$i]['comment']) {
+								if (isset($prevAnswers[$i]) && $prevAnswers[$i]['status'] == "flagged" && $prevAnswers[$i]['comment']) {
 									?>
 								<div class="form-group col-xs-12 form-error">
 									<b>Admin Note:</b>
