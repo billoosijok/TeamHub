@@ -24,8 +24,13 @@
   }
 }
 
-.login-page{
+html .login-page{
+	height: 100%;
 	margin: 0;
+}
+
+#pagewrapper{
+	min-height: 100%;
 }
 
 #content {

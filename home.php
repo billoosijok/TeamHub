@@ -4,13 +4,14 @@
 
 	<div class="homepage">
 		<header class="page-title">
+			<div class="mainIcon"><img src="assets/mainIcon.svg" alt="to do list icon"></div>
 			<h1>Welcome,</h1>
 			<h3>please review your dashboard</h3>
 		</header>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-s-1 col-md-3">
-				<div class="dashHead">Start Here</div>
+				<div class="dashHead1"><div class="icon"><img src="assets/flag.svg" alt=""></div>Attention Required</div>
 					<div class="homeFeedSH">
 						<?php
 							$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
@@ -28,7 +29,7 @@
 					</div>
 				</div>
 				<div class="col-s-1 col-md-3">
-				<div class="dashHead">View Results</div>
+				<div class="dashHead2"><div class="icon"><img src="assets/view.png" alt=""></div>View Your Results</div>
 					<div class="homeFeedVR">
 						<?php
 								$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
@@ -44,7 +45,7 @@
 				</div>
 				
 				<div class="col-s-1 col-md-3">
-				<div class="dashHead">Surveys to Review</div>
+				<div class="dashHead3"><div class="icon"><img src="assets/answer.svg" alt=""></div>Surveys to Complete</div>
 					<div class="homeFeed">
 						<?php
 									$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
@@ -62,7 +63,7 @@
 				</div>	
 				
 				<div class="col-s-1 col-md-3">
-				<div class="dashHead">Surveys to Approve</div>
+				<div class="dashHead4"><div class="icon"><img src="assets/approve.svg" alt=""></div>Surveys to Approve</div>
 				<div class="homeFeed">
 				
 					<?php

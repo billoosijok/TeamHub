@@ -373,12 +373,28 @@ main.main {
 .homepage h3{
 	color: gray;
 }
-.dashHead{
-	background-color: rgba(46, 127, 136, .7);
+.dashHead1, .dashHead2, .dashHead3, .dashHead4{
+/*	background-color: #FF4081;*/
 	padding: 20px 30px;
 	opacity: 5;
 	text-align: center;
 	color: white;
+}
+
+.dashHead1{
+	background-color: #FF4081;
+}
+
+.dashHead2{
+	background-color: #00AA8D;
+}
+
+.dashHead3{
+	background-color: #9B26AF;
+}
+
+.dashHead4{
+	background-color: #3F51B5;
 }
 
 .homeFeed{
@@ -391,14 +407,14 @@ main.main {
 
 .homeFeedSH{
 	font-size: 1em;
-	background: rgba(255, 153, 0, .7);
+	background: lightgray;
 	margin-bottom: 5%;
 	padding-top: 20px;
 }
 
 .homeFeedVR{
 	font-size: 1em;
-	background: rgba(173, 255, 47, .9);
+	background: lightgray;
 	margin-bottom: 5%;
 	padding-top: 20px;
 }
@@ -414,6 +430,26 @@ hr {
     height: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.mainIcon{
+	width: 10%;
+	float: left;
+}
+
+.mainIcon img{
+	width: 100%;
+	padding-right: 20px;
+}
+
+.icon{
+	width: 30px;
+	height: 25px;
+	float: left;
+}
+
+.icon img{
+	width: 100%;
 }
 
 /* ========== CREATE_SURVEY PAGE CSS ========== */
@@ -700,6 +736,11 @@ hr {
 		height: auto;
 		float: none;
 	}
+	.row{
+		max-width: 500px;
+		margin: 0 auto;
+	}
+
 }
 
 @keyframes scaleUp {
