@@ -20,53 +20,53 @@ if(!isset($_SESSION)) {
 require_once "database/connect.php";
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-	if ($_POST['createPassword'] == $_POST['reEnterPassword']) {
 		
-		$errorDiv = "";
-		$errors = checkFormErrors();
+	$errorDiv = "";
+	$errors = checkFormErrors();
 		
-		if($errors) {
-			$errorDiv = "<ul class='form-error'>";
+	if($errors) {
+		$errorDiv = "<ul class='form-error'>";
 		
-			foreach ($errors as $error) {
-				$errorDiv .= "<li>$error</li>";
-			}
-
-			$errorDiv .= "</ul>";
-		
-		}else{
-			
-			$email = $_POST['createEmail'];
-			$first_name = $_POST['createFirstName'];
-			$last_name = $_POST['createLastName'];
-			$password = $_POST['createPassword'];
-			
-			$result = $DB->INSERT("users", [
-			"email" => $email,
-			"first_name" => $first_name,
-			"last_name" => $last_name,
-			"password" => $password
-			]);
-			
-			$sql = "SELECT * FROM users WHERE email= :email";
-			$result = $DB->QUERY($sql, [
-				"email" => $email
-			]);
-			
-			if($user = $result->fetch()) {
-				$_SESSION['user_info'] = $user;
-//				var_dump($_SESSION['user_info']);
-			}
-			
-			//Add logic to check if the query was successful
-			header('Location: home.php');
+		foreach ($errors as $error) {
+			$errorDiv .= "<li>$error</li>";
 		}
+
+		$errorDiv .= "</ul>";
+		
+	}else{
+			
+		$email = $_POST['createEmail'];
+		$first_name = $_POST['createFirstName'];
+		$last_name = $_POST['createLastName'];
+		$password = $_POST['createPassword'];
+			
+		$result = $DB->INSERT("users", [
+		"email" => $email,
+		"first_name" => $first_name,
+		"last_name" => $last_name,
+		"password" => $password
+		]);
+			
+		$sql = "SELECT * FROM users WHERE email= :email";
+		$result = $DB->QUERY($sql, [
+			"email" => $email
+		]);
+			
+		if($user = $result->fetch()) {
+			$_SESSION['user_info'] = $user;
+		}
+			
+		header('Location: home.php');
 	}
 }	
 
 function checkFormErrors() {
 
 	$errors = [];
+	
+	if ($_POST['createPassword'] != $_POST['reEnterPassword']){
+		array_push($errors, "The passwords you entered did not match");
+	}
 
 	if (!isset($_POST['createEmail']) || $_POST['createEmail'] == "") {
 		array_push($errors, "Please enter an email address");
