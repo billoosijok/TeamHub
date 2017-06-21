@@ -22,7 +22,7 @@ require_once "database/connect.php";
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 	$errorDiv = "";
-	$errors = checkFormErrors();
+	$errors = checkFormErrors($DB);
 		
 	if($errors) {
 		$errorDiv = "<ul class='form-error'>";
@@ -60,7 +60,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 }	
 
-function checkFormErrors() {
+function checkFormErrors($DB) {
 
 	$errors = [];
 	
@@ -88,6 +88,18 @@ function checkFormErrors() {
 		
 	if (!isset($_POST['reEnterPassword']) || $_POST['reEnterPassword'] == "") {
 		array_push($errors, "Please re-enter a your password");
+	}
+	
+	//Check for duplicate email address
+	$sql = "SELECT * FROM users WHERE email= :email";
+	
+	$email = $_POST['createEmail'];
+	$result = $DB->QUERY($sql, [
+		"email" => $email
+	])->fetchAll();
+	
+	if(count($result) > 0) {
+		array_push($errors, "This email address is already registered");
 	}
 	
 	return $errors;
