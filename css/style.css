@@ -725,7 +725,7 @@ hr {
 }
 #approveButton {
 	background-color: #3F51B5;
-	color: gray;
+	color: white;
 }
 
 
@@ -739,8 +739,7 @@ hr {
 }
 
 #approveButton:disabled{
-	background-color: #2E7F88;
-	color: white;
+	opacity: 0.6;
 }
 
 

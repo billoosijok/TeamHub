@@ -2,10 +2,19 @@
 	TeamHub
 	CSS for login.php
 */
+
+body {
+	font-family: Helvetica;
+}
 [placeholder]:focus::-webkit-input-placeholder {
   transition: text-indent 0.5s 0.2s  ease;
 	text-indent: -100%;
 	color: black;
+}
+
+.container {
+	max-width: 1000px;
+	margin: auto;
 }
 
 @keyframes enterFromLeft {
@@ -38,7 +47,6 @@ html .login-page{
 }
 
 #topSquare {
-	height: 60%;
 	width: 100%;
 	background-color : #034D55;
 }
@@ -48,8 +56,8 @@ html .login-page{
 	color : #fff;
 	text-shadow : 1px, 1px, 1px, #95989A;
 	font-family : "Segoe ui", Helvetica , sans-serif;
-	font-size : 175px;
-	margin-top: 0px;
+	font-size : 75px;
+	margin: 0px;
 	font-weight : 100;
 	padding: 10px 0px 0px 20px;
 }
@@ -58,19 +66,20 @@ html .login-page{
 	position: relative;
 	color: #00AA8D;
 	font-family : "Segoe ui", Helvetica , sans-serif;
-	font-size : 85px;
+	font-size : 50px;
 	font-weight: 400;
 	font-style: italic;
-	letter-spacing: 1px;
 	padding: 0 0 0 20px;
-	margin-top: -100px;
+	margin: 0;
 	animation-name: enterFromLeft;
 	animation-duration: 1s;
 }
 
+
 #loginIdField {
+	display: block;
 	position: relative;
-	margin: 100px 0 0 25%;
+	margin: 10px auto;
 	width: 50%;
 	padding: 20px;
 	border: none;
@@ -79,14 +88,14 @@ html .login-page{
 }
 
 #passwordField {
+	display: block;
 	position: relative;
-	margin: 50px 0 0 25%;
+	margin: 10px auto;
 	width: 50%;
 	padding: 20px;
 	border: none;
 	border-radius: 10px;
 	font-size: 1.5em;
-
 }
 
 #loginButton {
@@ -133,6 +142,14 @@ html .login-page{
 	animation-duration: 3s;
 }
 
+.form-error {
+	border-left: 4px solid rgb(252, 100, 100);
+	width: 98%;
+	color: #ff0000;
+	margin: 10px auto;
+	padding: 2px 25px;
+	background-color: rgba(255, 255, 255, 0.8);
+}
 
 
 #graphic{

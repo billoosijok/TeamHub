@@ -49,16 +49,22 @@
 					<div class="homeFeed">
 						<?php
 								$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
-
 								foreach($surveys_joined as $survey) {
-									$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
+									$participants = $QUERY->SURVEY_PARTICIPANTS($survey->id);
+									foreach ($participants as $participant) {
 
-									if($status == "") {
-										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
-									}
+										if ($participant->id != $_USER->id) {
+											$answers = $QUERY->ANSWERS($survey->id, $_USER->id, $participant->id);
+											
+											if (!count($answers)) {
+												echo "<a href='$home_url/questionnaire.php?survey_id=".$survey->id."&reviewee_id=".$participant->id."'>". $survey->name ." &#10095; ". $participant->first_name . " " . $participant->last_name ."</a><hr/>";
+											}
+
+										}
+										
+									}	
 								}
-								?>
-					
+							?>
 					</div>
 				</div>	
 				
@@ -70,12 +76,38 @@
 									$surveys_created = $QUERY->SURVEYS_CREATED($_USER->id);
 
 									foreach($surveys_created as $survey) {
-										$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
+										if ($survey->status != 'approved') {
+										
+											$done = false;
+											$participants = $QUERY->SURVEY_PARTICIPANTS($survey->id);
 
-										if($status == "submitted") {
-											echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."<hr/></a>";
+											foreach ($participants as $participant) {
+
+												foreach ($participants as $other_participant) {
+
+													if ($participant != $other_participant) {
+														$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $participant->id, $other_participant->id);
+														if($status != "published") {
+															
+															$done = false;
+															break;
+														}
+													$done = true;
+
+												}
+												
+											}
+
 										}
+										if ($done) {
+										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."<hr/></a>";
+										}
+									
 									}
+
+								}
+										
+									
 								?>
 					
 				

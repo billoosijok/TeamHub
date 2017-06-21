@@ -23,7 +23,6 @@ function MakeFixable(el, untilScreenWidth) {
 
     if(Math.max(window.innerWidth, document.documentElement.clientWidth) > untilScreenWidth) {
       
-      
       if(elPosition.y - 20 <= pageYOffset) {
 
           el.addClass('fixable');
