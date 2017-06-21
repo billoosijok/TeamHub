@@ -14,6 +14,7 @@ body{
 }
 
 #content {
+	width: 100%;
 	font-family : "Segoe ui", Helvetica , sans-serif;
 	background-color : #2E7F88;
 }
@@ -23,15 +24,21 @@ body{
 	font-style: italic;
 	font-weight: 200;
 	font-size: 85px;
-	color:  #2E7F88;
-	margin: 0;
+	color:  #00AA8D;
+	margin: 0 auto;
 	padding: 20px;
+	text-align: center;
 }
 
 #createAccountBlock {
 	width: 100%;
 	height: auto;
 	background-color: #014A52;
+}
+
+#storeText{
+	margin: 0 auto;
+	max-width: 1200px;
 }
 
 #createAccountForm {
@@ -60,7 +67,7 @@ body{
 }
 
 #submitAccount:hover{
-	background-color: greenyellow;
+	background-color: #00AA8D;
 	color: black;
 }
 

@@ -97,8 +97,9 @@ function checkFormErrors() {
 <div id="pagewrapper">
 	<div id="content">
 
-		<div id="createAccountBlock">
+		<div id="createAccountBlock"><div id="storeText">
 		<h1 id="createAccountHeading">LET'S GET YOU READY TO REVIEW YOUR PEERS</h1>
+			</div>
 		</div><!--create account block-->
 		<?php if(isset($errorDiv)) echo $errorDiv;?>
 
@@ -112,7 +113,7 @@ function checkFormErrors() {
 			<input type="submit" id="submitAccount" name="submit" value="create"/>
 			
 		</form>
-	<div><!--end content-->
+	</div><!--end content-->
 </div><!--end pagewrapper-->
 </body>
 </html>

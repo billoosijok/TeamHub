@@ -57,7 +57,7 @@ html .login-page{
 
 #subTitle {
 	position: relative;
-	color: #2E7F88;
+	color: #00AA8D;
 	font-family : "Segoe ui", Helvetica , sans-serif;
 	font-size : 85px;
 	font-weight: 400;
@@ -103,7 +103,7 @@ html .login-page{
 }
 
 #loginButton:hover{
-	background-color: greenyellow;
+	background-color: #00AA8D;
 	color: black;
 }
 
@@ -119,7 +119,7 @@ html .login-page{
 }
 
 #createAccountLink:hover{
-	color: greenyellow;
+	color: #00AA8D;
 }
 
 #create{

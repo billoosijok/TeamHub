@@ -172,6 +172,26 @@ button.secondary:hover, .button.secondary:hover  {
   border-color: #2C3E50;
 }
 
+#buttonQ {
+  padding: 5px 10px;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 20px;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #777;
+  cursor: pointer;
+  margin: auto 10px;
+  background-color: #9B26AF;
+  color: #fff;
+
+  transition: background-color 0.2s;
+}
+
+#buttonQ:hover {
+  background-color: rgba(0,93,122, 0.8);
+  color: white;
+}
 
 .panel-default {
 	border-color: white;
@@ -704,10 +724,10 @@ hr {
 }
 
 .button#results{
-	display: none;
+	background-color: #00AA8D;
 }
 #approveButton {
-	background-color: greenyellow;
+	background-color: #3F51B5;
 	color: gray;
 }
 
@@ -725,10 +745,7 @@ hr {
 	background-color: #2E7F88;
 	color: white;
 }
-/*#results:hover{
-	font-size: 1.5em;
-	opacity: 1;
-}*/
+
 
 @media (max-width: 768px) {
 	aside.main {
