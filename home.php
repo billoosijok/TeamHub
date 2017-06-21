@@ -48,15 +48,15 @@
 				<div class="dashHead3"><div class="icon"><img src="assets/answer.svg" alt=""></div>Surveys to Complete</div>
 					<div class="homeFeed">
 						<?php
-									$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
+								$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
 
-									foreach($surveys_joined as $survey) {
-										$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
+								foreach($surveys_joined as $survey) {
+									$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
 
-										if($status == "") {
-											echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
-										}
+									if($status == "") {
+										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
 									}
+								}
 								?>
 					
 					</div>

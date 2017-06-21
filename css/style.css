@@ -629,17 +629,14 @@ hr {
 	position: relative;
 	opacity: 0;
 	top: 10px;
-
+	cursor: default;
 	transition: opacity 0.2s, top 0.2s;
 }
 
 .admin-review.page .content > section header .tools .option .submit.reveal {
 	opacity: 1;
 	top: 0;
-}
-
-.admin-review.page .content > section header .tools .option .submit:hover{
-	opacity: .7;
+	cursor: pointer;
 }
 
 .admin-review.page .grade-value {

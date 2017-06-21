@@ -24,7 +24,11 @@ function init_page() {
 		toolBox.prepend(option);
 
 		optionButton.click(function() {
-			form.submit();
+			if (optionButton.hasClass('reveal')) {
+				form.submit();
+			} else {
+				return false;
+			}
 		});
 
 		submitButton.css({
@@ -36,7 +40,9 @@ function init_page() {
 	function setupCommentBoxes() {
 		commentBoxes.keyup(function(event) {
 			if ($.trim($(this).val()) != "") {
-				if(!optionButton.hasClass('reveal')) { optionButton.addClass('reveal') };
+				if(!optionButton.hasClass('reveal')) { 
+					optionButton.addClass('reveal');
+				};
 			} else {
 				optionButton.removeClass('reveal');
 			}

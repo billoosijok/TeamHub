@@ -14,6 +14,8 @@ function MakeFixable(el, untilScreenWidth) {
   untilScreenWidth = untilScreenWidth || 0;
   
   var elPosition = elPositionInPage(el[0]);
+  var elParent   = el.parent();
+  var elParentPosition = elPositionInPage(elParent[0]);
   var elSibling = el.next();
   var lastYPos = 0;
 	
@@ -21,12 +23,12 @@ function MakeFixable(el, untilScreenWidth) {
 
     if(Math.max(window.innerWidth, document.documentElement.clientWidth) > untilScreenWidth) {
       
-
+      
       if(elPosition.y - 20 <= pageYOffset) {
 
           el.addClass('fixable');
           el[0].style.position = 'fixed';
-          el[0].style.width = elPosition.width + "px";
+          el[0].style.width = elParent.width() + "px";
           el[0].style.top = '0';
           el[0].style.zIndex = '10';
 
@@ -46,10 +48,20 @@ function MakeFixable(el, untilScreenWidth) {
 
 	});
   window.addEventListener('resize', function() {
+
+    // elPosition = 
+
     if(Math.max(window.innerWidth, document.documentElement.clientWidth) < untilScreenWidth) {
+     
       el.removeClass('fixable');
       el[0].style.position = '';
+      el[0].style.width = "";
+      el[0].style.top = '';
+      el[0].style.zIndex = '';
+
     } else {
+      
+      el[0].style.width = elParent.width() + "px";
 
     }
 

@@ -14,16 +14,17 @@ $pageUrl = $_SERVER['REQUEST_URI'];
 <body>
 <header class="main">
 	<h2>TeamHub</h2>
+	
 </header>
 
 <aside class="main col-xs-12 col-sm-3">
 		
-	<div class="profile slide-down">
-		<p class="placeholder slide-down-title person-title"><?php echo $_SESSION['user_info']->first_name ?></p>
-		<ul>
-			<li><a href="logout.php">Logout</a></li>
-		</ul>
-	</div>
+		<div class="profile slide-down">
+			<p class="placeholder slide-down-title person-title"><?php echo $_SESSION['user_info']->first_name ?></p>
+			<ul>
+				<li><a href="logout.php">Logout</a></li>
+			</ul>
+		</div>
 	<section class="nav-panel">
 		<div class="panel-content">
 			<ul>
@@ -38,7 +39,7 @@ $pageUrl = $_SERVER['REQUEST_URI'];
 		</div>
 	</section>
 	<section class="nav-panel">
-		<h3 class="panel-title">Surveys as Reviewer</h3>
+		<h3 class="panel-title">Surveys</h3>
 		
 		<div class="panel-content">	
 			<?php 
@@ -70,7 +71,7 @@ $pageUrl = $_SERVER['REQUEST_URI'];
 		</div>
 	</section>
 	<section class="nav-panel">
-		<h3 class="panel-title">Surveys as Administrator</h3>
+		<h3 class="panel-title">My Surveys</h3>
 
 		<div class="panel-content">
 			
