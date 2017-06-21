@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="col-s-1 col-md-3">
 				<div class="dashHead1"><div class="icon"><img src="assets/flag.svg" alt=""></div>Attention Required</div>
-					<div class="homeFeedSH">
+					<div class="homeFeed">
 						<?php
 							$surveys_joined = $QUERY->SURVEYS_JOINED($_USER->id);
 							
@@ -21,7 +21,7 @@
 									$status = $QUERY->QUESTIONNAIRE_STATUS($survey->id, $_USER->id, "*");
 									
 									if($status == "flagged") {
-										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
+										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a>";
 									}
 								}
 							}
@@ -37,7 +37,7 @@
 								foreach($surveys_joined as $survey) {
 
 									if($survey->status == "approved") {
-										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a><hr/>";
+										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a>";
 									}
 								}
 							?>
@@ -57,7 +57,7 @@
 											$answers = $QUERY->ANSWERS($survey->id, $_USER->id, $participant->id);
 											
 											if (!count($answers)) {
-												echo "<a href='$home_url/questionnaire.php?survey_id=".$survey->id."&reviewee_id=".$participant->id."'>". $survey->name ." &#10095; ". $participant->first_name . " " . $participant->last_name ."</a><hr/>";
+												echo "<a href='$home_url/questionnaire.php?survey_id=".$survey->id."&reviewee_id=".$participant->id."'>". $survey->name ." &#10095; ". $participant->first_name . " " . $participant->last_name ."</a>";
 											}
 
 										}
@@ -100,7 +100,7 @@
 
 										}
 										if ($done) {
-										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."<hr/></a>";
+										echo "<a href='$home_url/survey.php?id=".$survey->id."'>". $survey->name ."</a>";
 										}
 									
 									}

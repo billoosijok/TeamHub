@@ -421,10 +421,16 @@ main.main {
 	font-size: 1em;
 	background-color: lightgray;
 	margin-bottom: 5%;
-	padding-top: 20px;
+	/*padding-top: 20px;*/
 	
 }
 
+.homeFeed a {
+	display: block;
+	padding: 10px;
+	background-color: rgba(255,255,255,0.7);
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
 .homeFeedSH{
 	font-size: 1em;
 	background: lightgray;
